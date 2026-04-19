@@ -53,25 +53,23 @@ Mata kuliah ini menggunakan pendekatan **Positivist** (fenomena TI bisa diukur o
 ## Template A.1 — Research Mindset Self-Assessment
 
 ```
-Nama Peneliti    : ____________________
-Tanggal          : ____________________
+Nama Peneliti    : Zakkya Fauzan Alba'asithu
+Tanggal          : 19 April 2026
 
 1. Ketika membaca klaim "metode X 95% akurat":
-   - Pertanyaan pertama saya: ____________________
-   - Data yang dibutuhkan untuk verifikasi: ____________________
-
+   - Pertanyaan pertama saya: Apakah akurasi tersebut diukur pada data yang seimbang atau apakah ada bias pada kelas mayoritas (misal: daun sehat lebih banyak dari daun sakit)?
+   - Data yang dibutuhkan untuk verifikasi: Matriks konfusi (Confusion Matrix) untuk melihat False Negative dan detail distribusi dataset.
 2. Posisi paradigma:
-   - Pendekatan: [ ] Positivis  [ ] Interpretivis  [ ] Design Science  [ ] Mixed
-   - Alasan: ____________________
-
+   - Pendekatan: [x] Positivis  [ ] Interpretivis  [ ] Design Science  [ ] Mixed
+   - Alasan: Karena fokus riset adalah menciptakan artefak teknis berupa arsitektur CNN khusus untuk memecahkan masalah identifikasi penyakit padi secara otomatis.
 3. Identifikasi distorsi:
-   - Asumsi tersembunyi: ____________________
-   - Sumber bias potensial: ____________________
-   - Langkah mitigasi: ____________________
+   - Asumsi tersembunyi: Diasumsikan bahwa citra yang diambil di lapangan akan selalu memiliki kualitas dan pencahayaan yang sama dengan dataset Kaggle.
+   - Sumber bias potensial : Ketidakseimbangan jumlah sampel per kelas (Hawar daun 220 vs Tungro 80).
+   - Langkah mitigasi: Melakukan augmentasi data untuk menyeimbangkan jumlah sampel dan menguji model dengan data di luar dataset pelatihan.
 
 4. Komitmen etika:
-   - Data yang tidak akan dimanipulasi: ____________________
-   - Batasan yang diakui sejak awal: ____________________
+   - Data yang tidak akan dimanipulasi: Nilai akurasi pengujian dan jumlah data yang digunakan dalam proses training.
+   - Batasan yang diakui sejak awal: Model ini mungkin mengalami penurunan performa jika dihadapkan pada varietas padi atau kondisi pencahayaan ekstrem yang tidak ada dalam dataset.
 ```
 
 ---
@@ -81,53 +79,52 @@ Tanggal          : ____________________
 Pilih satu paper riset di bidang TI yang mengklaim "metode X meningkatkan performa." Telusuri setiap tahap Research Trust Model.
 
 **Paper yang dipilih:**
-> Judul: _______________________________________________
-> Penulis (Tahun): ______________________________________
+> Judul: Klasifikasi Penyakit Padi Menggunakan Convolutional Neural Network (CNN) Berbasis Citra Daun
+> Penulis (Tahun): Moh. Heri Susanto, Irwan Budi Santoso, Suhartono, Ahmad Fahmi Karami (2025)
 
 | Tahap | Apa yang Dilakukan | Potensi Distorsi |
 |-------|-------------------|-----------------|
-| Reality → Data | *Contoh: Kumpulkan log server 30 hari* | *Contoh: Hanya ambil jam sibuk* |
-| Data → Processing | | |
-| Processing → Analysis | | |
-| Analysis → Inference | | |
-| Inference → Knowledge | | |
+| Reality → Data | Mengumpulkan 710 citra dari dataset publik Kaggle (Hawar daun, Blas, Tungro, Sehat). | Sampling Bias: Data berasal dari lingkungan terkontrol, bukan dari pengambilan langsung di berbagai sawah lokal secara acak. |
+| Data → Processing | Mengubah ukuran citra menjadi 64 x 64piksel dan normalisasi nilai piksel. | Feature Loss: Pengurangan resolusi ke 64 x 64 dapat menghilangkan detail tekstur kecil pada bercak daun padi. |
+| Processing → Analysis | Pengujian 8 skenario model (A1-B4) dengan variasi learning rate dan dropout. | Overfitting Bias: Terlalu banyak mencoba skenario pada satu dataset yang sama hingga menemukan angka tertinggi tanpa validasi silang eksternal. |
+| Analysis → Inference | Menyimpulkan model B3 adalah yang terbaik dengan akurasi 0,9647 (96,47%). | Metric Bias: Akurasi tinggi mungkin menutupi kegagalan model pada kelas yang datanya sedikit (seperti Tungro). |
+| Inference → Knowledge | Menyatakan model CNN sederhana kompetitif untuk klasifikasi penyakit padi. | Generalization Error: Klaim keunggulan metode mungkin tidak berlaku jika diterapkan pada aplikasi mobile di lapangan terbuka. |
 
-**Distorsi paling besar di tahap:** ________________________
+**Distorsi paling besar di tahap:** Reality → Data
 
 **Dua distorsi spesifik yang teridentifikasi:**
-1. ___________________________________________________
-2. ___________________________________________________
+1. Data Imbalance: Jumlah data Tungro (80) jauh lebih sedikit dibanding Hawar Daun (220), sehingga model lebih condong mengenali ciri Hawar Daun.
+2. Environment Bias: Penggunaan dataset sekunder (Kaggle) membuat model tidak teruji terhadap noise nyata seperti bayangan, tangan manusia, atau gangguan latar belakang sawah.
 
 ---
 
 ## Latihan 2 — Analisis Kasus Etika
 
-Skenario: Seorang peneliti menemukan bahwa jika 3 data point outlier dihapus, hasil eksperimennya menjadi signifikan. Dengan outlier, hasilnya tidak signifikan.
+Skenario: Penghapusan 3 data point outlier agar hasil menjadi signifikan.
 
 | Perspektif | Analisis |
 |------------|---------|
-| Kejujuran ilmiah | *Contoh: Laporkan kedua versi (dengan dan tanpa outlier)* |
-| Transparansi | |
-| Peer review | |
+| Kejujuran ilmiah | Peneliti harus tetap menyertakan 3 outlier tersebut atau memberikan alasan teknis yang kuat mengapa data itu dibuang (misal: gambar rusak). |
+| Transparansi | Dalam riset ini, jika ada gambar daun yang gagal diklasifikasi, harus dilaporkan agar diketahui kelemahan algoritma CNN tersebut.|
+| Peer review | Reviewer membutuhkan data yang jujur untuk memastikan bahwa keunggulan model B3 bukan karena "keberuntungan" setelah membuang data yang sulit. |
 
 **Keputusan akhir dan justifikasi:**
-> ___________________________________________________
+> Melaporkan hasil dengan dan tanpa outlier (Transparansi Penuh). Justifikasinya adalah objektivitas; dalam informatika, outlier seringkali merupakan kasus penting (edge cases) yang justru menentukan keandalan sistem saat diimplementasikan secara nyata.
 
 ---
 
 ## Latihan 3 — Posisi Paradigma
 
-**Topik riset:** ________________________________________
+**Topik riset:** Klasifikasi Penyakit Padi dengan Arsitektur CNN Khusus
 
 | Kriteria | Positivis | Interpretivis | Design Science |
 |----------|-----------|---------------|----------------|
-| Kesesuaian dengan topik (1–5) | *Contoh: 4* | *Contoh: 2* | *Contoh: 5* |
-| Jenis data yang dikumpulkan | | | |
-| Limitasi paradigma | | | |
+| Kesesuaian dengan topik (1–5) | 4 | 1 | 5 |
+| Jenis data yang dikumpulkan | Akurasi, Loss, Precision, Recall. | Tidak ada (bukan data sosial). | Arsitektur Model, Konfigurasi Layer. |
+| Hanya fokus pada angka, bukan penyebab di lapangan. | Tidak bisa menghasilkan solusi otomatis. | Terlalu subjektif, sulit dihitung efisiensinya. | Sangat bergantung pada kualitas dataset yang tersedia. |
 
-**Paradigma yang dipilih:** _____________________________
-**Alasan:** ____________________________________________
-
+**Paradigma yang dipilih:** Design Science
+**Alasan:**Riset ini bertujuan untuk mengembangkan sebuah "artefak" (arsitektur model CNN yang dioptimasi) sebagai solusi untuk meningkatkan akurasi identifikasi penyakit tanaman padi secara otomatis.
 ---
 
 ## Refleksi
@@ -135,5 +132,5 @@ Skenario: Seorang peneliti menemukan bahwa jika 3 data point outlier dihapus, ha
 > Sebelum membaca materi ini, apakah pernah mempertanyakan klaim "95% akurat"? Setelah memahami rantai distorsi, pertanyaan apa yang sekarang akan diajukan saat membaca paper?
 
 **Jawaban:**
-> ___________________________________________________
-> ___________________________________________________
+>___Sebelum membaca materi ini, saya sering menganggap klaim "95% akurat" sebagai bukti bahwa sistem sudah sempurna. Setelah memahami rantai distorsi, pertanyaan yang sekarang akan saya ajukan adalah: "Bagaimana rasio distribusi data antar kelas?" dan "Apakah akurasi tersebut tetap bertahan jika model diuji dengan data dari perangkat kamera yang berbeda di luar dataset penelitian?
+
