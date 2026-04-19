@@ -122,6 +122,7 @@ Pilih satu topik di bidang TI yang diminati. Transformasikan melalui 5 tahap Pro
 <img width="605" height="789" alt="Screenshot 2026-04-19 213844" src="https://github.com/user-attachments/assets/77ad4c77-887f-4570-bfca-fe3d675fd676" />
 
 
+
 | Komponen | Deskripsi |
 |----------|----------|
 | Input | Dataset citra daun padi (710 gambar) dari Kaggle. |
