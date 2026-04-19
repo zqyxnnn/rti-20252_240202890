@@ -123,7 +123,7 @@ Gambarkan konteks sistem dari masalah riset di Latihan 1.
 
 | Komponen | Deskripsi |
 |----------|----------|
-| Input | PDataset citra daun padi (710 gambar) dari Kaggle. |
+| Input | Dataset citra daun padi (710 gambar) dari Kaggle. |
 | Process | Feature learning melalui 4 lapis konvolusi dan 2 lapis pooling. |
 | Output | Prediksi kategori penyakit dalam bentuk probabilitas. |
 | Outcome | Diagnosa penyakit padi yang objektif dan konsisten. |
