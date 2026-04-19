@@ -143,7 +143,7 @@ Evaluasi problem statement yang sudah dibuat menggunakan 5 kriteria.
 | Clarity | 5 | Sangat jelas: Input daun padi, metode CNN, output klasifikasi. |
 | Measurability | 5 | Menggunakan standar pengukuran ML (Akurasi, F1-Score) yang jelas. |
 | Relevance | 4 | Sangat relevan bagi Indonesia sebagai negara agraris. |
-| Testability | 5 | | Model bisa diuji ulang dan dibandingkan performanya dengan metode lain.
+| Testability | 5 | | Model bisa diuji ulang dan dibandingkan performanya dengan metode lain. |
 | Impact | 4 | Berdampak pada efisiensi pemantauan lahan pertanian. |
 
 **Skor total:** 23 / 25
