@@ -133,5 +133,5 @@ Skenario: Penghapusan 3 data point outlier agar hasil menjadi signifikan.
 > Sebelum membaca materi ini, apakah pernah mempertanyakan klaim "95% akurat"? Setelah memahami rantai distorsi, pertanyaan apa yang sekarang akan diajukan saat membaca paper?
 
 **Jawaban:**
->___Sebelum membaca materi ini, saya sering menganggap klaim "95% akurat" sebagai bukti bahwa sistem sudah sempurna. Setelah memahami rantai distorsi, pertanyaan yang sekarang akan saya ajukan adalah: "Bagaimana rasio distribusi data antar kelas?" dan "Apakah akurasi tersebut tetap bertahan jika model diuji dengan data dari perangkat kamera yang berbeda di luar dataset penelitian?
+> Sebelum membaca materi ini, saya sering menganggap klaim "95% akurat" sebagai bukti bahwa sistem sudah sempurna. Setelah memahami rantai distorsi, pertanyaan yang sekarang akan saya ajukan adalah "Bagaimana rasio distribusi data antar kelas?" dan "Apakah akurasi tersebut tetap bertahan jika model diuji dengan data dari perangkat kamera yang berbeda di luar dataset penelitian?"
 
