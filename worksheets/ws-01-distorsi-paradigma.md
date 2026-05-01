@@ -81,6 +81,7 @@ Pilih satu paper riset di bidang TI yang mengklaim "metode X meningkatkan perfor
 **Paper yang dipilih:**
 > Judul: Klasifikasi Penyakit Padi Menggunakan Convolutional Neural Network (CNN) Berbasis Citra Daun
 > Penulis (Tahun): Moh. Heri Susanto, Irwan Budi Santoso, Suhartono, Ahmad Fahmi Karami (2025)
+> Sumber / Link DOI : Susanto, M. H., Santoso, I. B., Suhartono, & Karami, A. F. (2025). Klasifikasi Penyakit Padi Menggunakan Convolutional Neural Network (CNN) Berbasis Citra Daun. Jurnal Nasional Teknik Elektro dan Teknologi Informasi (JNTETI), 14(3), 181-190. / https://journal.ugm.ac.id/v3/JNTETI/article/download/18791/6072
 
 | Tahap | Apa yang Dilakukan | Potensi Distorsi |
 |-------|-------------------|-----------------|
@@ -132,5 +133,5 @@ Skenario: Penghapusan 3 data point outlier agar hasil menjadi signifikan.
 > Sebelum membaca materi ini, apakah pernah mempertanyakan klaim "95% akurat"? Setelah memahami rantai distorsi, pertanyaan apa yang sekarang akan diajukan saat membaca paper?
 
 **Jawaban:**
->___Sebelum membaca materi ini, saya sering menganggap klaim "95% akurat" sebagai bukti bahwa sistem sudah sempurna. Setelah memahami rantai distorsi, pertanyaan yang sekarang akan saya ajukan adalah: "Bagaimana rasio distribusi data antar kelas?" dan "Apakah akurasi tersebut tetap bertahan jika model diuji dengan data dari perangkat kamera yang berbeda di luar dataset penelitian?
+> Sebelum membaca materi ini, saya sering menganggap klaim "95% akurat" sebagai bukti bahwa sistem sudah sempurna. Setelah memahami rantai distorsi, pertanyaan yang sekarang akan saya ajukan adalah "Bagaimana rasio distribusi data antar kelas?" dan "Apakah akurasi tersebut tetap bertahan jika model diuji dengan data dari perangkat kamera yang berbeda di luar dataset penelitian?"
 

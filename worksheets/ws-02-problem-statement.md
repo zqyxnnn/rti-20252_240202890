@@ -119,11 +119,13 @@ Pilih satu topik di bidang TI yang diminati. Transformasikan melalui 5 tahap Pro
 
 ## Latihan 2 — System Context Decomposition
 
-Gambarkan konteks sistem dari masalah riset di Latihan 1.
+<img width="605" height="789" alt="Screenshot 2026-04-19 213844" src="https://github.com/user-attachments/assets/77ad4c77-887f-4570-bfca-fe3d675fd676" />
+
+
 
 | Komponen | Deskripsi |
 |----------|----------|
-| Input | PDataset citra daun padi (710 gambar) dari Kaggle. |
+| Input | Dataset citra daun padi (710 gambar) dari Kaggle. |
 | Process | Feature learning melalui 4 lapis konvolusi dan 2 lapis pooling. |
 | Output | Prediksi kategori penyakit dalam bentuk probabilitas. |
 | Outcome | Diagnosa penyakit padi yang objektif dan konsisten. |
@@ -143,7 +145,7 @@ Evaluasi problem statement yang sudah dibuat menggunakan 5 kriteria.
 | Clarity | 5 | Sangat jelas: Input daun padi, metode CNN, output klasifikasi. |
 | Measurability | 5 | Menggunakan standar pengukuran ML (Akurasi, F1-Score) yang jelas. |
 | Relevance | 4 | Sangat relevan bagi Indonesia sebagai negara agraris. |
-| Testability | 5 | | Model bisa diuji ulang dan dibandingkan performanya dengan metode lain.
+| Testability | 5 | Model bisa diuji ulang dan dibandingkan performanya dengan metode lain. |
 | Impact | 4 | Berdampak pada efisiensi pemantauan lahan pertanian. |
 
 **Skor total:** 23 / 25
