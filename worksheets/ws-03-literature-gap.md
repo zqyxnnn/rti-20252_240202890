@@ -162,8 +162,5 @@ Pilih 2 baseline dari literatur yang sudah dibaca.
 
 **Jawaban:**
 > Beda antara “belum ada yang meneliti ini” sama research gap yang valid itu ada di buktinya. Kalau cuma bilang belum ada yang meneliti, itu asumsi doang dan belum tentu benar. Bisa aja sebenarnya sudah ada, tapi kita belum nemu.
-
-Kalau research gap yang valid, biasanya kelihatan dari pola di beberapa paper. Misalnya di kasus ini, hampir semua penelitian pakai dataset kecil. Dari situ bisa ditarik kesimpulan kalau ada masalah yang sama berulang.
-
-Cara ngebuktiin gap itu ada yang dengan cara bandingin beberapa penelitian, terus cari pola yang sama. Jadi bukan cuma satu paper, tapi dilihat secara keseluruhan. Dari situ baru kelihatan mana yang masih kurang dan bisa dijadiin peluang penelitian.
-> ___________________________________________________
+> Kalau research gap yang valid, biasanya kelihatan dari pola di beberapa paper. Misalnya di kasus ini, hampir semua penelitian pakai dataset kecil. Dari situ bisa ditarik kesimpulan kalau ada masalah yang sama berulang.
+> Cara ngebuktiin gap itu ada ya dengan cara bandingin beberapa penelitian, terus cari pola yang sama. Jadi bukan cuma satu paper, tapi dilihat secara keseluruhan. Dari situ baru kelihatan mana yang masih kurang dan bisa dijadiin peluang penelitian.
