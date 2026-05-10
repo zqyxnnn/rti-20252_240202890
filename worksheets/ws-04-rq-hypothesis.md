@@ -67,34 +67,36 @@ Jika rantai ini tidak lengkap, RQ belum mature. Bi-directional: RQ yang tidak bi
 ```
 RQ-CONTRIBUTION-HYPOTHESIS
 
-Gap Statement  : ____________________
+Gap Statement  : Dataset yang digunakan pada penelitian klasifikasi penyakit daun padi masih terbatas sehingga performa model belum stabil di kondisi nyata
 
 Research Question:
-  Tipe         : [ ] Comparison  [ ] Improvement  [ ] Exploratory
-  Formulasi    : ____________________
-  Variabel IV  : ____________________
-  Variabel DV  : ____________________
-  Metrik       : ____________________
-  Dataset      : ____________________
-  Baseline     : ____________________
+  Tipe         : [x] Comparison  [ ] Improvement  [ ] Exploratory
+  Formulasi    : Apakah model CNN DenseNet-169 menghasilkan akurasi lebih tinggi dibandingkan VGG-19 pada klasifikasi penyakit daun padi menggunakan dataset citra daun padi?
+  Variabel IV  : Jenis model CNN (DenseNet-169 vs VGG-19)
+  Variabel DV  : Akurasi klasifikasi
+  Metrik       : Accuracy
+  Dataset      : Dataset citra daun padi (gabungan dataset penelitian sebelumnya + augmentasi)
+  Baseline     : VGG-19
+
 
 Quality Check RQ:
-  [ ] Variabel spesifik
-  [ ] Metrik jelas
-  [ ] Baseline ada
-  [ ] Konteks disebutkan
-  [ ] Memerlukan eksperimen (bukan hanya survei literatur)
+  [x] Variabel spesifik
+  [x] Metrik jelas
+  [x] Baseline ada
+  [x] Konteks disebutkan
+  [x] Memerlukan eksperimen (bukan hanya survei literatur)
 
 Contribution Statement:
-  Apa yang baru diketahui : ____________________
-  Jenis kontribusi        : [ ] Improvement  [ ] Comparison  [ ] Novel approach
-  Gap yang diisi          : ____________________
+  Apa yang baru diketahui : Perbandingan performa antara DenseNet-169 dan VGG-19 pada dataset daun padi yang lebih variatif
+  Jenis kontribusi        : [ ] Improvement  [x] Comparison  [ ] Novel approach
+  Gap yang diisi          : Keterbatasan studi perbandingan model CNN pada dataset kecil dengan performa yang belum stabil
+
 
 Hypothesis Pair:
-  H₀ : ____________________
-  H₁ : ____________________
-  Threshold              : ____________________
-  Justifikasi threshold  : ____________________
+  H₀ : Tidak ada perbedaan signifikan akurasi antara DenseNet-169 dan VGG-19 pada klasifikasi penyakit daun padi
+  H₁ : Terdapat perbedaan signifikan akurasi antara DenseNet-169 dan VGG-19 pada klasifikasi penyakit daun padi
+  Threshold              :  α = 0.05
+  Justifikasi threshold  : Nilai α = 0.05 umum digunakan dalam penelitian untuk menentukan signifikansi statistik
 ```
 
 ---
@@ -103,24 +105,24 @@ Hypothesis Pair:
 
 Gunakan gap yang ditemukan di WS-03. Transformasikan menjadi Research Question.
 
-**Gap dari WS-03:** ____________________________________
+**Gap dari WS-03:** Dataset kecil menyebabkan model kurang stabil dan performa belum optimal di kondisi nyata
 
 **RQ versi pertama (tulis bebas):**
-> ___________________________________________________
+> Apakah DenseNet lebih baik dari VGG untuk klasifikasi penyakit daun padi?
 
 **Evaluasi RQ:**
 
 | Komponen | Ada? | Isi |
 |----------|------|-----|
-| Metode spesifik | *Contoh: Ya — CNN vs RF* | |
-| Metrik terukur | | |
-| Baseline | | |
-| Dataset/konteks | | |
+| Metode spesifik | Ya | DenseNet vs VGG |
+| Metrik terukur | Tidak | Belum disebut |
+| Baseline | Tidak| Belum jelas |
+| Dataset/konteks | Tidak | Belum disebut |
 
-**Tipe RQ:** [ ] Comparison / [ ] Improvement / [ ] Exploratory
+**Tipe RQ:** [x] Comparison / [ ] Improvement / [ ] Exploratory
 
 **RQ versi revisi (setelah evaluasi):**
-> ___________________________________________________
+> Apakah model DenseNet-169 menghasilkan akurasi lebih tinggi dibandingkan VGG-19 pada klasifikasi penyakit daun padi menggunakan dataset citra daun padi?
 
 ---
 
@@ -130,14 +132,14 @@ Rumuskan pasangan hipotesis dari RQ di Latihan 1.
 
 | Komponen | Isi |
 |----------|-----|
-| H₀ | *Contoh: Tidak ada perbedaan signifikan F1-Score antara CNN dan RF pada dataset CIC-MalMem-2022* |
-| H₁ | |
-| Metrik | |
-| Threshold | |
-| Justifikasi threshold | |
+| H₀ | Tidak ada perbedaan signifikan akurasi antara DenseNet-169 dan VGG-19 |
+| H₁ | Terdapat perbedaan signifikan akurasi antara DenseNet-169 dan VGG-19 |
+| Metrik | Accuracy |
+| Threshold | 0.05 |
+| Justifikasi threshold | Standar umum dalam uji statistik penelitian |
 
-**Apakah hipotesis ini falsifiable?** [ ] Ya / [ ] Tidak
-> Bagaimana cara membuktikannya salah? ___________________
+**Apakah hipotesis ini falsifiable?** [x] Ya / [ ] Tidak
+> Bagaimana cara membuktikannya salah? Dengan melakukan eksperimen dan uji statistik. Jika hasil uji menunjukkan p-value > 0.05, maka H₁ ditolak dan H₀ tidak bisa ditolak.
 
 ---
 
@@ -147,14 +149,14 @@ Lengkapi rantai dari RQ hingga metode analisis.
 
 | Tahap | Isi |
 |-------|-----|
-| RQ | *Contoh: Apakah CNN menghasilkan F1-Score lebih tinggi dari RF...* |
-| Variable (IV) | *Contoh: Jenis algoritma (CNN vs RF)* |
-| Variable (DV) | |
-| Metric | |
-| Data source | |
-| Analysis method | |
+| RQ | Apakah DenseNet-169 menghasilkan akurasi lebih tinggi dibandingkan VGG-19 pada klasifikasi penyakit daun padi |
+| Variable (IV) | Jenis model CNN (DenseNet-169 vs VGG-19) |
+| Variable (DV) | Akurasi klasifikasi |
+| Metric | Accuracy |
+| Data source | Dataset citra daun padi (gabungan + augmentasi) |
+| Analysis method | Perbandingan akurasi + uji statistik (t-test atau sejenisnya) |
 
-**Apakah rantai lengkap?** [ ] Ya / [ ] Tidak
+**Apakah rantai lengkap?** [x] Ya / [ ] Tidak
 > Jika tidak, tahap mana yang perlu direvisi? ______________
 
 ---
@@ -163,6 +165,6 @@ Lengkapi rantai dari RQ hingga metode analisis.
 
 > Ambil satu judul skripsi/paper yang pernah dibaca. Coba ekstrak RQ-nya. Apakah RQ tersebut memenuhi semua komponen (metode, metrik, baseline, konteks)? Jika tidak, apa yang hilang?
 
-**Judul:** _____________________________________________
-**RQ yang diekstrak:** __________________________________
-**Komponen yang hilang:** _______________________________
+**Judul:** Klasifikasi Citra Penyakit Daun Tanaman Padi Menggunakan CNN dengan Arsitektur VGG-19
+**RQ yang diekstrak:** Bagaimana performa CNN VGG-19 dalam mengklasifikasikan penyakit daun padi?
+**Komponen yang hilang:** Tidak ada baseline pembanding, tidak ada metrik spesifik di pertanyaan (walau ada di hasil), dan tidak disebutkan konteks dataset secara eksplisit.

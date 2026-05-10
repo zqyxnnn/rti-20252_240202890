@@ -66,19 +66,19 @@ Metrik harus ditentukan **sebelum** eksperimen. Memilih metrik setelah melihat d
 ```
 VARIABLE & METRIC DEFINITION
 
-Research Question: ____________________
+Research Question:  Apakah DenseNet-169 menghasilkan akurasi lebih tinggi dibandingkan VGG-19 pada klasifikasi penyakit daun padi?
 
 | Variabel | Tipe | Konsep | Metrik | Skala | Satuan | Cara Mengukur | Justifikasi |
 |----------|------|--------|--------|-------|--------|---------------|-------------|
-|          | IV   |        |        |       |        |               |             |
-|          | DV   |        |        |       |        |               |             |
-|          | CV   |        |        |       |        |               |             |
+| Jenis model CNN | IV | Pendekatan klasifikasi | DenseNet-169 vs VGG-19 | Nominal | — | Menggunakan dua arsitektur berbeda pada dataset yang sama | Mewakili perbedaan metode yang diuji |
+| Akurasi klasifikasi | DV | Performa model | Accuracy | Ratio | % | (jumlah prediksi benar / total data) × 100 | Langsung menggambarkan performa model |
+| Dataset (jumlah & augmentasi) | CV | Variasi data | Jumlah data & teknik augmentasi | ratio | jumlah citra | Menentukan jumlah data latih & augmentasi yang digunakan | Mengontrol pengaruh data terhadap hasil |
 
 Alignment Check:
   RQ → Concept → Variable → Metric → Data → Result
-  [ ] Setiap langkah terdokumentasi
-  [ ] Tidak ada "lompatan logis"
-  [ ] Metrik mengukur apa yang dimaksud (construct validity)
+  [x] Setiap langkah terdokumentasi
+  [x] Tidak ada "lompatan logis"
+  [x] Metrik mengukur apa yang dimaksud (construct validity)
 ```
 
 ---
@@ -87,15 +87,15 @@ Alignment Check:
 
 Gunakan RQ dari WS-04. Definisikan variabel dan metriknya.
 
-**RQ:** __________________________________________________
+**RQ:** Apakah DenseNet-169 menghasilkan akurasi lebih tinggi dibandingkan VGG-19 pada klasifikasi penyakit daun padi?
 
 | Variabel | Tipe | Konsep Abstrak | Metrik Konkret | Skala (NOIR) | Satuan |
 |----------|------|---------------|----------------|-------------|--------|
-| *Contoh: Jenis model* | *IV* | *Pendekatan klasifikasi* | *Categorical: CNN vs RF* | *Nominal* | *—* |
-| | DV | | | | |
-| | CV | | | | |
+| Jenis model | IV | Metode klasifikasi | DenseNet-169 vs VGG-19 | Nominal | — |
+| Performa model | DV | Kinerja klasifikasi | Accuracy | Ratio | % |
+| Dataset | CV | Kualitas & jumlah data | Jumlah citra & augmentasi | Ratio | jumlah |
 
-**Apakah ada lompatan logis dalam rantai?** [ ] Ya / [ ] Tidak
+**Apakah ada lompatan logis dalam rantai?** [ ] Ya / [x] Tidak
 > Jika ya, di mana? ____________________________________
 
 ---
@@ -106,15 +106,15 @@ Evaluasi metrik DV yang dipilih di Latihan 1 menggunakan 3 kriteria.
 
 | Kriteria | Skor (1-5) | Justifikasi |
 |----------|-----------|-------------|
-| Representative | *Contoh: 4 — F1-Score mewakili keseimbangan precision-recall* | |
-| Sensitive | | |
-| Feasible | | |
+| Representative | 4 | Accuracy cukup mewakili performa model klasifikasi |
+| Sensitive | 3 | Kurang sensitif kalau data tidak seimbang (class imbalance) |
+| Feasible | 5 | Mudah dihitung dan umum digunakan |
 
-**Apakah perlu secondary metric?** [ ] Ya / [ ] Tidak
-> Jika ya, apa dan mengapa? _____________________________
+**Apakah perlu secondary metric?** [x] Ya / [ ] Tidak
+> Jika ya, apa dan mengapa? F1-Score, karena bisa menangkap keseimbangan antara precision dan recall, terutama kalau dataset tidak seimbang.
 
 **Contoh kasus ceiling effect untuk metrik ini:**
-> ___________________________________________________
+> Kalau dataset terlalu mudah (misalnya citra jelas semua), akurasi bisa tinggi semua (>95%) sehingga sulit membedakan model mana yang benar-benar lebih baik.
 
 ---
 
@@ -124,10 +124,10 @@ Bayangkan data yang akan dikumpulkan dari eksperimen. Evaluasi 4 dimensi kualita
 
 | Dimensi | Pertanyaan | Jawaban | Strategi Mitigasi |
 |---------|-----------|---------|------------------|
-| Completeness | *Apakah semua data point terkumpul?* | | |
-| Consistency | *Apakah ada kontradiksi internal?* | | |
-| Validity | *Apakah benar-benar mengukur yang dimaksud?* | | |
-| Representativeness | *Apakah sampel mewakili populasi target?* | | |
+| Completeness | Apakah semua data point terkumpul? | Belum tentu, karena dataset terbatas | Tambah data atau gunakan augmentasi |
+| Consistency | Apakah ada kontradiksi internal? | Bisa terjadi karena perbedaan label |Validasi ulang label dataset |
+| Validity | Apakah benar-benar mengukur yang dimaksud? | Cukup valid karena pakai citra nyata | Gunakan data yang sudah diverifikasi |
+| Representativeness | Apakah sampel mewakili populasi target? | Belum sepenuhnya | Ambil data dari berbagai kondisi (cahaya, lokasi)|
 
 ---
 
@@ -136,5 +136,5 @@ Bayangkan data yang akan dikumpulkan dari eksperimen. Evaluasi 4 dimensi kualita
 > Mengapa memilih metrik setelah melihat data dianggap p-hacking? Apa bedanya dengan eksplorasi data yang sah?
 
 **Jawaban:**
-> ___________________________________________________
-> ___________________________________________________
+> Memilih metrik setelah melihat data itu disebut p-hacking karena kita bisa “milih” metrik yang paling menguntungkan hasil kita. Jadi hasilnya kelihatan bagus, tapi sebenarnya nggak objektif dari awal.
+> Bedanya sama eksplorasi data yang sah itu di niat dan tahapnya. Kalau eksplorasi, metrik tambahan dilaporkan sebagai temuan tambahan, bukan buat membuktikan hipotesis utama. Jadi tetap jujur kalau itu bukan bagian dari rencana awal.
