@@ -72,20 +72,20 @@ Research Question: ____________________
 Variable → Component Mapping:
 | Variabel | Tipe | Komponen Sistem | Cara Manipulasi/Pengukuran |
 |----------|------|-----------------|---------------------------|
-|          | IV   |                 |                           |
-|          | DV   |                 |                           |
-|          | CV   |                 |                           |
+| Jenis Model CNN | IV | Model Loader / Classifier Module | Mengganti instance class model (DenseNet169 vs VGG19) via config |
+| Akurasi & F1-Score| DV | Evaluation Module / Logger | Menghitung prediksi vs ground truth di akhir tahap testing |
+| Dataset & Augmentasi | CV | Data Loader / Preprocessing Pipe | Mengunci source folder dataset dan seed untuk random augmentation |
 
 4 Prinsip Desain:
-  [ ] Traceability — Setiap komponen bisa ditelusuri ke variabel
-  [ ] Variable Isolation — IV bisa diubah tanpa mengubah CV
-  [ ] Measurement Integration — Pengukuran DV built-in
-  [ ] Reproducibility — Setup bisa direkonstruksi
+  [x] Traceability — Setiap komponen bisa ditelusuri ke variabel
+  [x] Variable Isolation — IV bisa diubah tanpa mengubah CV
+  [x] Measurement Integration — Pengukuran DV built-in
+  [x] Reproducibility — Setup bisa direkonstruksi
 
 Experimental Setup:
-  Input data     : ____________________
-  Parameter      : ____________________
-  Output format  : ____________________
+  Input data     : 710 citra penyakit padi (Kaggle) yang sudah di-resize.
+  Parameter      : Learning rate 0.001, Batch size 32, Epoch 50.
+  Output format  : Confusion Matrix (Image) & Performance Metrics (CSV).
 ```
 
 ---
@@ -94,15 +94,15 @@ Experimental Setup:
 
 Gunakan RQ dan variabel dari WS-05. Petakan ke komponen sistem.
 
-**RQ:** __________________________________________________
+**RQ:** Apakah DenseNet-169 menghasilkan akurasi lebih tinggi dibandingkan VGG-19 pada klasifikasi penyakit daun padi?
 
 | Variabel | Tipe | Komponen Sistem | Cara Manipulasi / Pengukuran |
 |----------|------|-----------------|---------------------------|
-| *Contoh: Jenis model* | *IV* | *Modul classifier (swap RF ↔ CNN)* | *Ganti config `model_type`* |
-| | DV | | |
-| | CV | | |
+| Jenis Arsitektur | IV | Modul Arsitektur (Python Class) | Swap antara models.densenet169 dan models.vgg19 melalui variabel selected_model. |
+| Akurasi Klasifikasi | DV | Metric Collector | Menggunakan fungsi accuracy_score dari library Scikit-Learn pada output layer. |
+| Hyperparameter (LR, Epoch) | CV | Config Manager (YAML/JSON) | Nilai di-hardcoded dalam file config.yaml agar tidak berubah selama eksperimen. |
 
-**Apakah semua variabel bisa di-map?** [ ] Ya / [ ] Tidak
+**Apakah semua variabel bisa di-map?** [x] Ya / [ ] Tidak
 > Jika tidak, komponen apa yang perlu ditambahkan? _________
 
 ---
@@ -113,14 +113,14 @@ Evaluasi desain sistem terhadap 4 prinsip.
 
 | Prinsip | Status | Bukti / Penjelasan |
 |---------|--------|-------------------|
-| Traceability | *Contoh: ✅ — setiap modul punya label variabel* | |
-| Modularity | | |
-| Controllability | | |
-| Measurability | | |
+| Traceability | ✅ Berhasil | Perubahan pada hasil (Output) bisa dilacak langsung ke perubahan model (IV) di log eksperimen. |
+| Modularity | ✅ Berhasil | Modul Preprocessing terpisah dari Modul Model, ganti model tidak perlu ganti cara resize gambar. |
+| Controllability | ✅ Berhasil | Semua parameter seperti learning rate dikumpulkan di satu file config, bukan tersebar di kode. |
+| Measurability | ✅ Berhasil | Sistem otomatis menyimpan file results.csv setiap kali satu skenario training selesai. |
 
-**Prinsip mana yang paling sulit dipenuhi?** _______________
+**Prinsip mana yang paling sulit dipenuhi?** Controllability.
 **Strategi untuk mengatasinya:**
-> ___________________________________________________
+> Menggunakan library seperti Hydra atau Argparse di Python agar semua parameter eksperimen harus dilewatkan melalui perintah eksekusi, sehingga meminimalkan adanya parameter tersembunyi (hidden variables).
 
 ---
 
@@ -130,14 +130,14 @@ Jika sistem memiliki 3 komponen utama, rencanakan ablation study.
 
 | Kondisi | Komponen A | Komponen B | Komponen C | Hasil yang Diharapkan |
 |---------|-----------|-----------|-----------|----------------------|
-| Full | *Contoh: ✅ CNN* | *Contoh: ✅ Temporal features* | *Contoh: ✅ Z-score norm* | *Baseline penuh* |
-| – A | ❌ (ganti RF) | ✅ | ✅ | |
-| – B | ✅ | ❌ (tanpa temporal) | ✅ | |
-| – C | ✅ | ✅ | ❌ (tanpa normalisasi) | |
+| Full | ✅ Pakai Weights ImageNet | ✅ Rotate, Flip, Zoom | ✅ Dropout 0.5 | Baseline akurasi tertinggi |
+| – A | ❌ (Training dari nol) | ✅ | ✅ | Akurasi turun drastis (butuh data lebih banyak) |
+| – B | ✅ | ❌ (Data asli saja) | ✅ | Model kemungkinan overfitting |
+| – C | ✅ | ✅ | ❌ (Tanpa Dropout) | Kesenjangan akurasi Train vs Test melebar |
 
-**Komponen mana yang diprediksi paling berkontribusi?** _____
+**Komponen mana yang diprediksi paling berkontribusi?** Komponen A (Transfer Learning).
 **Mengapa?**
-> ___________________________________________________
+> Karena dataset yang digunakan kecil (710 gambar). Tanpa pengetahuan awal dari ImageNet (Transfer Learning), model CNN akan kesulitan mengenali fitur kompleks hanya dari beberapa ratus gambar daun.
 
 ---
 
@@ -146,5 +146,5 @@ Jika sistem memiliki 3 komponen utama, rencanakan ablation study.
 > Apa risiko jika sistem dibangun seperti produk (monolitik, fitur lengkap) lalu baru dilakukan eksperimen? Mengapa arsitektur modular penting untuk riset?
 
 **Jawaban:**
-> ___________________________________________________
-> ___________________________________________________
+> Risikonya adalah Confounding Variables. Jika sistem monolitik, saat akurasi rendah, kita sulit menentukan apakah penyebabnya adalah algoritma yang buruk, preprocessing yang salah, atau data yang kotor karena semuanya menyatu.
+> Arsitektur modular penting karena memungkinkan Isolasi Variabel. Kita bisa mengganti satu modul (misal: ganti model CNN) tanpa merusak atau mengubah modul lainnya (misal: modul pengambil data), sehingga kita yakin bahwa perubahan hasil eksperimen benar-benar disebabkan oleh variabel yang kita manipulasi.
