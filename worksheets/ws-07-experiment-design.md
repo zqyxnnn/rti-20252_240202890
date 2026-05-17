@@ -68,36 +68,36 @@ Ancaman validitas harus diidentifikasi **sebelum** eksperimen dan mitigasinya di
 ```
 EXPERIMENT DESIGN
 
-Research Question : ____________________
-Hypothesis        : ____________________
-Tipe Eksperimen   : [ ] Comparison  [ ] Ablation  [ ] Parameter
+Research Question : Apakah model CNN DenseNet-169 menghasilkan akurasi lebih tinggi dibandingkan VGG-19 pada klasifikasi penyakit daun padi menggunakan dataset citra daun padi?
+Hypothesis        : H₁: Terdapat perbedaan signifikan akurasi antara DenseNet-169 dan VGG-19 pada klasifikasi penyakit daun padi (H₀ ditolak).
+Tipe Eksperimen   : [x] Comparison  [ ] Ablation  [ ] Parameter
 
 Kondisi Eksperimen:
 | Kondisi | Deskripsi | IV Value | CV Settings |
 |---------|-----------|----------|-------------|
-| Control |           |          |             |
-| Treatment |         |          |             |
+| Control | Menggunakan arsitektur baseline VGG-19 | VGG-19 | Dataset Kaggle, LR 0.001, Epoch 50, Seed 42 |
+| Treatment | Menggunakan arsitektur usulan DenseNet-169 | DenseNet-169 | Dataset Kaggle, LR 0.001, Epoch 50, Seed 42 |
 
 Fairness Checklist:
-  [ ] Dataset identik untuk semua kondisi
-  [ ] Preprocessing setara
-  [ ] Tuning effort setara
-  [ ] Environment identik
-  [ ] Metrik evaluasi sama
+  [x] Dataset identik untuk semua kondisi
+  [x] Preprocessing setara
+  [x] Tuning effort setara
+  [x] Environment identik
+  [x] Metrik evaluasi sama
 
 Threat Analysis:
 | Threat Type | Ancaman Spesifik | Mitigasi |
 |-------------|-----------------|----------|
-| Internal    |                 |          |
-| External    |                 |          |
-| Construct   |                 |          |
-| Conclusion  |                 |          |
+| Internal    | Data Leakage (foto mirip masuk ke train & test) | Menggunakan Stratified K-Fold agar distribusi kelas konsisten |
+| External    | Dataset terlalu bersih/ideal (Kaggle) | Menambahkan augmentasi noise/blur untuk simulasi kondisi nyata |
+| Construct   | Akurasi tinggi tapi salah prediksi pada kelas minoritas | Menggunakan F1-Score dan Confusion Matrix sebagai metrik utama |
+| Conclusion  | Hasil tinggi hanya karena "kebetulan" satu kali run | Melakukan running eksperimen sebanyak 5-10 kali dan diambil rata-ratanya |
 
 Statistical Plan:
-  Uji statistik   : ____________________
-  Justifikasi      : ____________________
-  Alpha            : ____________________
-  Effect size min  : ____________________
+  Uji statistik   : T-Test Independent atau Mann-Whitney U Test
+  Justifikasi      : Membandingkan rata-rata akurasi dari dua kelompok model yang berbeda.
+  Alpha            : 0.05
+  Effect size min  : 0.5 (Medium effect)
 ```
 
 ---
@@ -106,13 +106,13 @@ Statistical Plan:
 
 Susun desain eksperimen berdasarkan RQ, variabel, dan sistem dari WS-04 sampai WS-06.
 
-**RQ:** __________________________________________________
-**Tipe eksperimen:** [ ] Comparison / [ ] Ablation / [ ] Parameter
+**RQ:** Apakah model CNN DenseNet-169 menghasilkan akurasi lebih tinggi dibandingkan VGG-19 pada klasifikasi penyakit daun padi menggunakan dataset citra daun padi?
+**Tipe eksperimen:** [x] Comparison / [ ] Ablation / [ ] Parameter
 
 | Kondisi | Deskripsi | IV Value | CV Settings |
 |---------|-----------|----------|-------------|
-| Control | *Contoh: RF baseline dari literatur* | *RF* | *Dataset X, 80:20 split, seed 42* |
-| Treatment | | | |
+| Control | VGG-19 sebagai standar arsitektur CNN klasik. | VGG-19 | 710 citra, split 80:20, batch 32. |
+| Treatment | DenseNet-169 dengan fitur feature reuse (dense blocks). | DenseNet-169 | 710 citra, split 80:20, batch 32. |
 
 ---
 
@@ -122,13 +122,13 @@ Evaluasi apakah desain eksperimen di Latihan 1 sudah fair.
 
 | Kriteria | Status | Detail |
 |----------|--------|--------|
-| Dataset identik | *Contoh: ✅ — sama-sama pakai CIC-MalMem-2022* | |
-| Preprocessing setara | | |
-| Tuning effort setara | | |
-| Environment identik | | |
-| Metrik evaluasi sama | | |
+| Dataset identik | ✅ — Sama-sama pakai dataset Kaggle (710 citra) | Memastikan kedua model belajar dari sumber data yang sama persis. |
+| Preprocessing setara | ✅ — Sama-sama resize 64x64 & normalisasi | Tidak ada perlakuan khusus pada input data untuk salah satu model.|
+| Tuning effort setara | ✅ — Sama-sama pakai Adam Optimizer & 50 Epoch | Usaha optimasi dibuat seimbang agar perbandingannya jujur (fair). |
+| Environment identik | ✅ — Sama-sama running di Google Colab (Tesla T4) | Menghindari perbedaan hasil yang disebabkan oleh variasi hardware. |
+| Metrik evaluasi sama | ✅ — Sama-sama pakai Accuracy & F1-Score | Parameter keberhasilan diukur dengan penggaris yang sama. |
 
-**Ada yang tidak fair?** [ ] Ya / [ ] Tidak
+**Ada yang tidak fair?** [ ] Ya / [x] Tidak
 > Jika ya, bagaimana cara memperbaikinya? ________________
 
 ---
@@ -139,14 +139,14 @@ Identifikasi ancaman validitas untuk desain eksperimen ini.
 
 | Threat Type | Ancaman Spesifik | Mitigasi |
 |-------------|-----------------|----------|
-| Internal | *Contoh: Data leakage antara train-test* | *Contoh: Gunakan stratified split, validasi tidak ada overlap* |
-| External | | |
-| Construct | | |
-| Conclusion | | |
+| Internal | Overfitting karena dataset sangat kecil (710 gambar). | Menggunakan Data Augmentation dan Early Stopping. |
+| External | Model tidak bisa mengenali penyakit padi di varietas lokal Indonesia. | Memberikan disclaimer batasan dataset pada laporan akhir. |
+| Construct | Akurasi menipu karena jumlah data per kelas tidak seimbang. | Wajib melaporkan Precision dan Recall per kelas penyakit. |
+| Conclusion | Jumlah sampel pengujian (test set) terlalu sedikit untuk uji statistik. | Menggunakan Cross-Validation untuk memperbanyak sampel data performa. |
 
-**Ancaman mana yang paling sulit dimitigasi?** _____________
+**Ancaman mana yang paling sulit dimitigasi?** External Validity.
 **Mengapa?**
-> ___________________________________________________
+> Karena kita menggunakan dataset publik (Kaggle). Tanpa mengambil data langsung dari sawah lokal di Indonesia, kita tidak pernah bisa menjamin 100% bahwa model ini akan seakurat itu jika dipasang di aplikasi petani lokal.
 
 ---
 
@@ -155,6 +155,6 @@ Identifikasi ancaman validitas untuk desain eksperimen ini.
 > Sebuah paper melaporkan "metode kami mengalahkan semua baseline." Apa 3 pertanyaan pertama yang harus diajukan untuk mengevaluasi klaim ini?
 
 **Jawaban:**
-1. ___________________________________________________
-2. ___________________________________________________
-3. ___________________________________________________
+1. Apakah baseline di-tuning secara adil?
+2. Apakah dataset pengujian benar-benar terpisah?
+3. Apakah perbandingannya menggunakan metrik yang relevan?
