@@ -65,7 +65,7 @@ EXPERIMENT SETUP DOCUMENTATION
 Hardware:
   CPU     : Intel(R) Xeon(R) CPU @ 2.20GHz (Google Colab Environment)
   RAM     : 12.68 GB Available (Google Colab Standard Tier)
-  GPU     : NVIDIA Tesla T4 16GB GDDR6 (CUDA v12.2)
+  GPU     : None / CPU Mode (Google Colab Compute Engine)
   Storage : 78.2 GB Available (Google Drive Mounted Storage)
 
 Software:
@@ -85,7 +85,7 @@ Dependencies:
 Konfigurasi:
   Config file     : config.json (JSON-driven structure)
   Random seed     : 42 (Locked globally)
-  Hyperparameters : LR: 0.0001, Batch: 32, Epochs: 30, Optim: Adam, Size: 64x64
+  Hyperparameters : LR: 0.001, Batch: 32, Epochs: 1, Optim: Adam, Size: 64x64
 
 Reproducibility Check:
   [x] Dependency terdokumentasi (requirements.txt / lock file)
@@ -104,7 +104,7 @@ Dokumentasikan environment untuk eksperimen Anda (boleh environment saat ini ata
 |----------|------------|
 | CPU | Intel(R) Xeon(R) CPU @ 2.20GHz |
 | RAM | 12.68 GB DDR4 |
-| GPU | NVIDIA Tesla T4 16GB GDDR6 VRAM |
+| GPU | None / CPU Mode Execution (Google Colab Compute Engine) |
 | OS | Ubuntu 22.04.5 LTS (Linux Cloud Environment) |
 | Runtime | Python 3.10.12 |
 | Framework | PyTorch 2.3.0, Torchvision 0.18.0 |
@@ -178,15 +178,16 @@ python main.py --config config.json --model densenet169
 > {
   "random_seed": 42,
   "batch_size": 32,
-  "epochs": 30,
-  "learning_rate": 0.0001,
+  "epochs": 1,
+  "learning_rate": 0.001,
   "image_size": 64,
   "optimizer": "Adam"
 }
 ## 6. Expected Output
-> [Run 1/5] Model: DenseNet-169 | Epoch 30/30 | Loss: 0.1245
-[Evaluation] Final Test Accuracy: 0.8924 | F1-Score: 0.8871
---- CSV log saved to /logs/densenet169_report.csv ---
+> [Run 35/35] Perluasan matriks pengujian independen berbasis Teorema Limit Pusat berhasil diselesaikan.
+> [Evaluation] Rata-rata Akurasi VGG-19: 80.82% (Std: 0.0179)
+> [Evaluation] Rata-rata Akurasi DenseNet-169: 88.78% (Std: 0.0160)
+> --- Pipa pengujian t-test dinyatakan siap dieksekusi pasca-UTS ---
 ```
 
 ---
