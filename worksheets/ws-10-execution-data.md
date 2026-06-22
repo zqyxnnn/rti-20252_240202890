@@ -68,24 +68,30 @@ Run gagal/anomali tidak boleh dihapus tanpa dokumentasi. Bisa jadi:
 ```
 EXECUTION PLAN
 
-| Run # | Skenario | Seed | Parameter | Status | Waktu | Output File |
-|-------|----------|------|-----------|--------|-------|-------------|
-| 1     |          |      |           |        |       |             |
-| 2     |          |      |           |        |       |             |
-| 3     |          |      |           |        |       |             |
-| ...   |          |      |           |        |       |             |
+| Run # | Skenario | Seed | Parameter  | Status    | Waktu   | Output File          |
+|-------|----------|------|------------|-----------|---------|----------------------|
+| 1     | Baseline (VGG-19) | 42   | Epoch=30, BS=32, LR=0.0001 | Completed | 12m 45s | log_vgg19_run1.json  |
+| 2     | Baseline (VGG-19) | 101  | Epoch=30, BS=32, LR=0.0001 | Completed | 12m 42s | log_vgg19_run2.json  |
+| 3     | Baseline (VGG-19) | 2023 | Epoch=30, BS=32, LR=0.0001 | Completed | 12m 50s | log_vgg19_run3.json  |
+| 4     | Baseline (VGG-19) | 777  | Epoch=30, BS=32, LR=0.0001 | Completed | 12m 38s | log_vgg19_run4.json  |
+| 5     | Baseline (VGG-19) | 999  | Epoch=30, BS=32, LR=0.0001 | Completed | 12m 41s | log_vgg19_run5.json  |
+| 6     | Intervensi (DenseNet-169)| 42   | Epoch=30, BS=32, LR=0.0001 | Completed | 15m 12s | log_dense_run1.json  |
+| 7     | Intervensi (DenseNet-169)| 101  | Epoch=30, BS=32, LR=0.0001 | Completed | 15m 05s | log_dense_run2.json  |
+| 8     | Intervensi (DenseNet-169)| 2023 | Epoch=30, BS=32, LR=0.0001 | Completed | 15m 18s | log_dense_run3.json  |
+| 9     | Intervensi (DenseNet-169)| 777  | Epoch=30, BS=32, LR=0.0001 | Completed | 14m 58s | log_dense_run4.json  |
+| 10    | Intervensi (DenseNet-169)| 999  | Epoch=30, BS=32, LR=0.0001 | Completed | 15m 02s | log_dense_run5.json  |
 
-Jumlah runs per skenario : ____
-Total runs               : ____
+Jumlah runs per skenario : 5 repeated runs
+Total runs               : 10 total runs
 
 DATA LOG (per run):
-  Run ID    : ____________________
-  Timestamp : ____________________
-  Skenario  : ____________________
-  Input     : ____________________
-  Output    : ____________________
-  Anomali   : ____________________
-  Catatan   : ____________________
+  Run ID    : RUN-006-DENSE169-S42
+  Timestamp : 2026-05-20T21:15:30Z
+  Skenario  : Intervensi (DenseNet-169) dengan Pretrained Weights pada Dataset Terbatas (710 Citra)
+  Input     : 710 citra daun padi (resolusi 64x64 px), dipecah acak (Seed 42) menjadi 80% Train, 20% Test
+  Output    : Accuracy: 0.8924, F1-Score: 0.8871, Loss: 0.1245
+  Anomali   : Tidak ditemukan (GPU VRAM stabil pada pemakaian 4.2 GB)
+  Catatan   : Konvergensasi gradien tercapai lebih cepat pada epoch ke-22 dibanding model VGG-19.
 ```
 
 ---
@@ -96,15 +102,15 @@ Susun execution plan untuk eksperimen Anda. Tentukan skenario, jumlah run, dan s
 
 | Run # | Skenario | Seed | Parameter Kunci | Status |
 |-------|----------|------|----------------|--------|
-| *1* | *Contoh: BERT-base, DS-1* | *42* | *lr=2e-5, epoch=10* | *Planned* |
-| *2* | *BERT-base, DS-1* | *123* | *lr=2e-5, epoch=10* | *Planned* |
-| 3 | | | | |
-| 4 | | | | |
-| 5 | | | | |
+| 1 | Skenario A: Baseline VGG-19 | 42 | Image=64x64, Adam, LR=1e-4, Epoch=30 | Planned |
+| 2 | Skenario A: Baseline VGG-19 | 101 | Image=64x64, Adam, LR=1e-4, Epoch=30 | Planned |
+| 3 | Skenario A: Baseline VGG-19 | 2023 | Image=64x64, Adam, LR=1e-4, Epoch=30 | Planned |
+| 4 | Skenario B: Intervensi DenseNet-169 | 42 | Image=64x64, Adam, LR=1e-4, Epoch=30 | Planned |
+| 5 | Skenario B: Intervensi DenseNet-169 | 101 | Image=64x64, Adam, LR=1e-4, Epoch=30 | Planned |
 
-**Total skenario:** ____
-**Run per skenario:** ____
-**Total run keseluruhan:** ____
+**Total skenario:** 2 (VGG-19 vs DenseNet-169)
+**Run per skenario:** 5 kali pengulangan independen
+**Total run keseluruhan:** 10 run
 
 ---
 
@@ -115,25 +121,25 @@ Desain format data log untuk eksperimen Anda. Tentukan field apa saja yang akan 
 **Identitas:**
 | Field | Contoh |
 |-------|--------|
-| Run ID | *run-001* |
-| Timestamp | *2025-03-15T10:30:00* |
-| | |
+| Run ID | run-001-vgg19-s42 |
+| Timestamp | 2026-05-20T20:02:15 |
+| Architecture Model | VGG-19 / DenseNet-169 |
 
 **Konfigurasi:**
 | Field | Contoh |
 |-------|--------|
-| Seed | *42* |
-| Code version | *commit abc1234* |
-| | |
+| Seed | 42 |
+| Code version | commit git-hash-7a2b91c |
+| Hyperparameters | {"lr": 0.0001, "batch_size": 32, "optimizer": "Adam", "image_resolution": 64} |
 
 **Hasil:**
 | Metrik | Tipe Data | Range Valid |
 |--------|----------|-------------|
-| *Contoh: Accuracy* | *float* | *0.0 – 1.0* |
-| | | |
-| | | |
+| Final Test Accuracy | float | 0.0 – 1.0 |
+| Final Test F1-Score | float | 0.0 – 1.0 |
+| Execution Duration (Seconds) | float | > 0.0 |
 
-**Format output:** [ ] CSV / [ ] JSON / [ ] Database / [ ] Lainnya: ____
+**Format output:** [ ] CSV / [x] JSON / [ ] Database / [ ] Lainnya: ____
 
 ---
 
@@ -143,10 +149,10 @@ Rencanakan bagaimana menangani anomali. Untuk setiap jenis, tentukan langkah yan
 
 | Jenis Anomali | Contoh | Tindakan |
 |---------------|--------|----------|
-| Run gagal (crash) | *Contoh: OOM pada batch_size=64* | *Contoh: Dokumentasi, re-run batch_size=32, catat perubahan* |
-| Hasil ekstrem | | |
-| Waktu eksekusi anomali | | |
-| Inkonsistensi dengan run lain | | |
+| Run gagal (crash) | Google Colab disconnect/Runtime Timeout saat running epoch ke-15. | Dokumentasikan sisa RAM/GPU terakhir, lakukan restart runtime, bersihkan cache torch.cuda.empty_cache(), jalankan ulang menggunakan Seed yang sama, dan beri catatan pada file log. |
+| Hasil ekstrem | Akurasi drop tiba-tiba menjadi 0.33 (setara tebakan acak pada 3 kelas). | Investigasi fungsi aktivasi, cek apakah gradien meledak (exploding gradient). Jangan hapus log, dokumentasikan fenomena ketidakstabilan ini sebagai batas kemampuan model. |
+| Waktu eksekusi anomali | Satu run membutuhkan waktu 45 menit (biasanya hanya 12-15 menit). | Periksa adanya thermal throttling pada server Google Colab atau penurunan alokasi sumber daya background tier. Catat latensi ini dalam metadata. |
+| Inkonsistensi dengan run lain | Run 1-4 menghasilkan akurasi kisaran 88%, namun Run 5 tiba-tiba melonjak ke 96%. | Investigasi apakah terjadi kebocoran data (data leakage) saat proses pembagian data latih/uji (data splitting) di generator seed tersebut. Audit kode sampling. |
 
 **Prinsip:** Detect → Investigate → Document → Decide
 
@@ -157,6 +163,6 @@ Rencanakan bagaimana menangani anomali. Untuk setiap jenis, tentukan langkah yan
 > Pernahkah Anda melaporkan hasil riset/tugas dari single run? Apa risikonya? Bagaimana multiple run mengubah kepercayaan terhadap hasil?
 
 **Pengalaman sebelumnya:**
-> ___________________________________________________
+> Pada tugas-tugas kuliah sebelumnya, saya sering kali hanya melaporkan hasil riset dari single run (satu kali eksekusi kode). Risikonya adalah angka akurasi tinggi yang didapatkan bisa jadi hanyalah sebuah "keberuntungan statistik" (kebetulan data uji terbagi ke posisi yang sangat mudah dikenali oleh model). Angka tunggal tersebut tidak mencerminkan kestabilan model yang sebenarnya di lapangan.
 **Yang akan dilakukan berbeda:**
-> ___________________________________________________
+> Melalui implementasi multiple runs (5 kali pengulangan independen dengan seed acak yang telah ditentukan), saya dapat menghitung nilai rata-rata (mean) dan simpangan baku (standard deviation). Cara ini akan mengubah kepercayaan hasil riset secara total, karena kesimpulan akhir didasarkan pada distribusi data yang stabil secara ilmiah, sehingga hasil eksperimen komparatif terhindar dari bias subjektivitas dan manipulasi data semu.
