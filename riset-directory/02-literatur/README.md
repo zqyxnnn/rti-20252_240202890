@@ -4,18 +4,55 @@ Kumpulan referensi & paper terkait untuk mendukung Tinjauan Pustaka (Tahap 5).
 
 ## Topik referensi yang relevan
 
-- Keamanan JWT/JWKS (termasuk kelas kerentanan JWKS Endpoint Flooding / CVE-2026-48524)
-- Strategi caching multi-layer (Redis sebagai L1, PostgreSQL sebagai L2/source of truth)
-- Negative caching untuk mitigasi flooding/cache-busting
-- Rate limiting pada API Gateway / microservices
-- Metodologi load testing dengan k6
+- Arsitektur Deep Learning (CNN)
+- Identifikasi Penyakit Utama
+- Teknik Transfer Learning
+- Optimasi Hyperparameter
+- Proses Preprocessing dan Augmentasi Data
 
 ## Isi yang diharapkan
+# Matriks Literatur: Klasifikasi Penyakit Daun Padi
 
-- Salinan/ringkasan paper (PDF, catatan ringkasan, anotasi)
-- Daftar pustaka terkumpul (format BibTeX/RIS) untuk diacu di [../07-manuskrip/](../07-manuskrip/)
+| No | Penulis / Tahun | Judul Penelitian | Metode Utama | Temuan / Hasil |
+|:---|:---|:---|:---|:---|
+| 1 | Anggiratih et al. (2021) | Klasifikasi Penyakit Padi EfficientNet B3 | Transfer Learning | Akurasi 79,53%, Loss 0,012 |
+| 2 | Asseweth (2024) | Klasifikasi Penyakit Padi DenseNet-169 | Grid Search Tuning | Akurasi 93% |
+| 3 | Susanto (2025) | Klasifikasi Penyakit CNN | CNN Arsitektur Dasar | Identifikasi fitur penyakit daun |
+| 4 | Annur et al. (2023) | Klasifikasi Penyakit Leafblast (MobileNetv2) | MobileNetv2 | Fokus pada tingkat keparahan (*severity*) |
+| 5 | Shinta (2023) | Klasifikasi Penyakit Daun VGG-19 | CNN VGG-19 | Evaluasi performa arsitektur VGG-19 |
 
-## Berkas
+@article{anggiratih2021,
+  author = {Anggiratih, Endang and Siswanti, Sri and Octaviani, Saly Kurnia and Arumsari},
+  title = {Klasifikasi Penyakit Tanaman Padi Menggunakan Model Deep Learning EfficientNet B3 Dengan Transfer Learning},
+  journal = {Jurnal Ilmiah Sinus},
+  year = {2021}
+}
 
-- [matriks-literatur.md](matriks-literatur.md) — matriks literatur lengkap (7 topik dipetakan ke 18 referensi terverifikasi; status verifikasi CVE-2026-48524)
-- [daftar-pustaka.bib](daftar-pustaka.bib) — bibliografi BibTeX (18 entri), siap diimpor ke Mendeley
+@thesis{asseweth2024,
+  author = {Asseweth, Muhammad Yazid Abud},
+  title = {Klasifikasi Penyakit Pada Daun Tanaman Padi Menggunakan Arsitektur DenseNet-169},
+  school = {Universitas Medan Area},
+  year = {2024}
+}
+
+@thesis{susanto2025,
+  author = {Susanto, Moh. Heri},
+  title = {Klasifikasi Penyakit Pada Tanaman Padi Berbasis Citra Daun Menggunakan Convolutional Neural Network},
+  school = {UIN Maulana Malik Ibrahim Malang},
+  year = {2025}
+}
+
+@article{annur2023,
+  author = {Annur, Imam Fauzi and Umami, Jumhurul and Annafii, Moch. Nasheh and Trisnaningrum, Niken and Putra, Oddy Virgantara},
+  title = {Klasifikasi Tingkat Keparahan Penyakit Leafblast Tanaman Padi Menggunakan MobileNetv2},
+  journal = {Fountain of Informatics Journal},
+  year = {2023}
+}
+
+@thesis{shinta2023,
+  author = {Shinta, Rahma},
+  title = {Klasifikasi Citra Penyakit Daun Tanaman Padi Menggunakan CNN Dengan Arsitektur VGG-19},
+  school = {UIN Sultan Syarif Kasim Riau},
+  year = {2023}
+}
+
