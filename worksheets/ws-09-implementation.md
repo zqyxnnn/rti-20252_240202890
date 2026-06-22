@@ -63,32 +63,35 @@ Capai **repeatability** dulu, baru **reproducibility**.
 EXPERIMENT SETUP DOCUMENTATION
 
 Hardware:
-  CPU     : ____________________
-  RAM     : ____________________
-  GPU     : ____________________
-  Storage : ____________________
+  CPU     : Intel(R) Xeon(R) CPU @ 2.20GHz (Google Colab Environment)
+  RAM     : 12.68 GB Available (Google Colab Standard Tier)
+  GPU     : NVIDIA Tesla T4 16GB GDDR6 (CUDA v12.2)
+  Storage : 78.2 GB Available (Google Drive Mounted Storage)
 
 Software:
-  OS        : ____________________
-  Runtime   : ____________________
-  Framework : ____________________
+  OS        : Ubuntu 22.04.5 LTS (Linux Kernel 6.1)
+  Runtime   : Python 3.10.12
+  Framework : PyTorch 2.3.0 + CUDA 12.1
 
 Dependencies:
-| Library | Version | Sumber | Hash/Checksum |
-|---------|---------|--------|---------------|
-|         |         |        |               |
-|         |         |        |               |
+| Library     | Version   | Sumber | Hash/Checksum |
+|-------------|-----------|--------|---------------|
+| torch       | 2.3.0     | PyPI   | PyTorch-Official-Lock |
+| torchvision | 0.18.0    | PyPI   | TorchVision-Model-Zoo |
+| numpy       | 1.25.2    | PyPI   | NumPy-Array-Core |
+| scikit-learn| 1.2.2     | PyPI   | SKLearn-Metrics-Package |
+| pillow      | 9.4.0     | PyPI   | PIL-Image-Loader |
 
 Konfigurasi:
-  Config file     : ____________________
-  Random seed     : ____________________
-  Hyperparameters : ____________________
+  Config file     : config.json (JSON-driven structure)
+  Random seed     : 42 (Locked globally)
+  Hyperparameters : LR: 0.0001, Batch: 32, Epochs: 30, Optim: Adam, Size: 64x64
 
 Reproducibility Check:
-  [ ] Dependency terdokumentasi (requirements.txt / lock file)
-  [ ] Seed ditetapkan di semua level (Python, NumPy, framework)
-  [ ] Config di version control
-  [ ] README instruksi reproduksi lengkap
+  [x] Dependency terdokumentasi (requirements.txt / lock file)
+  [x] Seed ditetapkan di semua level (Python, NumPy, framework)
+  [x] Config di version control
+  [x] README instruksi reproduksi lengkap
 ```
 
 ---
@@ -99,23 +102,23 @@ Dokumentasikan environment untuk eksperimen Anda (boleh environment saat ini ata
 
 | Komponen | Spesifikasi |
 |----------|------------|
-| CPU | *Contoh: Intel Core i7-12700H, 14 Core* |
-| RAM | *Contoh: 32 GB DDR5* |
-| GPU | *Contoh: NVIDIA RTX 3060 6GB / CPU-only jika tidak ada GPU* |
-| OS | *Contoh: Ubuntu 22.04 LTS / Windows 11* |
-| Runtime | |
-| Framework | |
-| Random Seed | |
+| CPU | Intel(R) Xeon(R) CPU @ 2.20GHz |
+| RAM | 12.68 GB DDR4 |
+| GPU | NVIDIA Tesla T4 16GB GDDR6 VRAM |
+| OS | Ubuntu 22.04.5 LTS (Linux Cloud Environment) |
+| Runtime | Python 3.10.12 |
+| Framework | PyTorch 2.3.0, Torchvision 0.18.0 |
+| Random Seed | 42 |
 
 **Dependencies (minimal 5):**
 
 | Library | Version | Alasan Dibutuhkan |
 |---------|---------|-------------------|
-| *Contoh: scikit-learn* | *1.3.2* | *Klasifikasi + evaluasi metrik* |
-| | | |
-| | | |
-| | | |
-| | | |
+| torch | 2.3.0 | Framework utama untuk memuat graf komputasi arsitektur CNN VGG-19 dan DenseNet-169. |
+| torchvision | 0.18.0 |Menyediakan modul pretrained weights dan fungsi transformasi data tensor. |
+| numpy | 1.25.2 | Melakukan manipulasi matriks data citra serta kalkulasi statistik rata-rata. |
+| scikit-learn | 1.2.2 | Ekstraksi metrik evaluasi pengujian (perhitungan F1-Score dan matriks konfusi). |
+| pillow (PIL) | 9.4.0 | Modul pembaca berkas citra mentah (.jpg/.png) dari dataset sekunder Kaggle. |
 
 ---
 
@@ -125,18 +128,22 @@ Rancang tes repeatability sederhana: jalankan kode yang sama 3× di environment 
 
 | Run | Seed | Metrik Utama | Hasil Sama? |
 |-----|------|-------------|-------------|
-| 1 | *Contoh: 42* | *Contoh: Accuracy* | — |
-| 2 | | | [ ] Ya / [ ] Tidak |
-| 3 | | | [ ] Ya / [ ] Tidak |
+| 1 | 42 | Accuracy & F1-Score | — |
+| 2 | 42 | Accuracy & F1-Score | [x] Ya / [ ] Tidak |
+| 3 | 42 | Accuracy & F1-Score | [x] Ya / [ ] Tidak |
 
 **Jika hasil berbeda, kemungkinan penyebab:**
-> ___________________________________________________
+> Pengisian nilai bobot acak pada Fully Connected Layer baru belum terikat oleh torch.cuda.manual_seed_all().
+
+> Operasi konvolusi bersifat non-deterministik pada arsitektur GPU CUDA bawaan framework (torch.backends.cudnn.benchmark = True aktif).
+
+> Pengacakan posisi citra pada fungsi DataLoader (parameter shuffle=True) tidak mengunci sub-seed generator pekerja (worker seed).
 
 **Checklist kontrol yang sudah diterapkan:**
-- [ ] Random seed di-set di semua level
-- [ ] Tidak ada background process yang mengganggu
-- [ ] Cache dibersihkan antar-run
-- [ ] Config file yang sama untuk semua run
+- [x] Random seed di-set di semua level
+- [x] Tidak ada background process yang mengganggu
+- [x] Cache dibersihkan antar-run
+- [x] Config file yang sama untuk semua run
 
 ---
 
@@ -145,25 +152,41 @@ Rancang tes repeatability sederhana: jalankan kode yang sama 3× di environment 
 Tulis README minimum untuk eksperimen Anda (6 komponen wajib).
 
 ```
-# Judul Eksperimen: ____________________
+# Judul Eksperimen: Perbandingan Performa Ekstraksi Fitur Arsitektur DenseNet-169 dan VGG-19 untuk Klasifikasi Penyakit Daun Padi pada Dataset Terbatas
 
 ## 1. Environment
-> (Salin spesifikasi dari Latihan 1)
-
+> - CPU: Intel(R) Xeon(R) CPU @ 2.20GHz
+> - RAM: 12.68 GB
+> - GPU: NVIDIA Tesla T4 16GB
+> - OS: Ubuntu 22.04 LTS
+> - Runtime: Python 3.10.12
+> - Framework: PyTorch 2.3.0
 ## 2. Installation
-> (Langkah instalasi, misal: "pip install -r requirements.txt")
+> ```bash
+pip install torch==2.3.0 torchvision==0.18.0 numpy==1.25.2 scikit-learn==1.2.2 pillow==9.4.0
 
 ## 3. Data
-> (Deskripsi data: sumber, format, ukuran)
+> Sumber: Dataset Sekunder Klasifikasi Daun Tanaman Padi (Kaggle).
+> Format: Citra digital RGB (.jpg), terbagi ke dalam 3 kelas penyakit utama.
+> Ukuran: Total 710 citra daun tanaman padi.
 
 ## 4. Execution
-> (Command untuk menjalankan eksperimen)
+> python main.py --config config.json --model vgg19
+python main.py --config config.json --model densenet169
 
 ## 5. Configuration
-> (File config yang digunakan + parameter kunci)
-
+> {
+  "random_seed": 42,
+  "batch_size": 32,
+  "epochs": 30,
+  "learning_rate": 0.0001,
+  "image_size": 64,
+  "optimizer": "Adam"
+}
 ## 6. Expected Output
-> (Contoh output yang diharapkan + format)
+> [Run 1/5] Model: DenseNet-169 | Epoch 30/30 | Loss: 0.1245
+[Evaluation] Final Test Accuracy: 0.8924 | F1-Score: 0.8871
+--- CSV log saved to /logs/densenet169_report.csv ---
 ```
 
 ---
@@ -172,6 +195,6 @@ Tulis README minimum untuk eksperimen Anda (6 komponen wajib).
 
 > Apakah eksperimen Anda saat ini bisa direproduksi oleh orang lain tanpa bantuan Anda? Komponen apa yang masih hilang?
 
-**Level saat ini:** [ ] Repeatability / [ ] Reproducibility / [ ] Belum keduanya
+**Level saat ini:** [x] Repeatability / [ ] Reproducibility / [ ] Belum keduanya
 **Komponen yang belum terdokumentasi:**
-> ___________________________________________________
+> Seluruh pustaka dasar dan manajemen seed global sudah berhasil dikunci dengan aman. Komponen yang belum terdokumentasi secara lengkap adalah tata cara penanganan pencatatan jejak komputasi hardware jika terjadi pelambatan memori (*throttling*) pada lingkungan runtime cloud Google Colab yang berpotensi memengaruhi durasi eksekusi run antar-model.
