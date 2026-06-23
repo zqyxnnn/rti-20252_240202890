@@ -1,30 +1,33 @@
-# 06-output
+## 06-output
+Hasil olahan data, model, dan visualisasi komparatif arsitektur CNN (VGG19 vs DenseNet169) untuk klasifikasi penyakit daun padi.
 
-Hasil olahan data & visualisasi — **Tahap 4** (lihat [../09-docs/tahap-4-analisis-data.md](../09-docs/tahap-4-analisis-data.md)).
+## Struktur Direktori
+Dihasilkan secara otomatis oleh 05-kode/run_stability_test.py dan dianalisis melalui 05-kode/klasifikasi_daun_padi.ipynb.
 
-Dihasilkan oleh `05-kode/analysis/run_all.py` dari data mentah `04-data/` (matrix 400 run, 40 replikasi).
+06-output/
+├── figures/
+│   └── fig_distribution_boxplot.png
+├── tables/
+│   ├── summary_statistics.csv
+│   └── full_runs_log.csv
+├── models/
+│   └── (tempat simpan file .keras/.pkl jika perlu)
+└── klasifikasi_daun_padi_executed.ipynb
 
-## tables/
+Daftar File Output
+1. Visualisasi (figures/)
+- fig_distribution_boxplot.png: Perbandingan sebaran akurasi (VGG19 vs DenseNet169) untuk melihat stabilitas.
+- fig_accuracy_trend.png: Line chart tren akurasi per random seed (menunjukkan apakah ada model yang performanya fluktuatif).
+- fig_error_distribution.png: Histogram distribusi akurasi masing-masing model.
 
-| File | Isi |
-|---|---|
-| `descriptive_stats.csv` | Statistik deskriptif (latensi avg/p90/p95/max, RPS, failed/checks rate) per (cache_mode, traffic_variant), mean±std atas 40 replikasi |
-| `descriptive_stats_mixed_scenarios.csv` | Breakdown latensi legitimate vs attack untuk traffic_variant `mixed-unique`/`mixed-pool` |
-| `dperf.csv` | $D_{perf}$ = (T_hybrid − T_none) / T_none × 100% untuk traffic legitimate (baseline & dalam mixed) |
-| `resource_usage.csv` | CPU% & memori (MiB) mean/max per (cache_mode, traffic_variant, container) |
-| `mitigation_effectiveness.csv` | Metrik efektivitas mitigasi dari delta `/metrics` gateway (db queries, cache hit ratio, rate-limit blocked, auth outcome) |
-| `db_query_reduction.csv` | Penurunan total query Postgres hybrid vs none per traffic_variant |
+2. Tabel Hasil Eksperimen (tables/)
+- summary_statistics.csv: Ringkasan mean, std, min, max akurasi dari 35 seed.
+- t_test_results.csv: Log hasil T-Test (T-statistic dan P-value).
+- full_runs_log.csv: Log lengkap 35 eksperimen (isi dari training_runs.csv yang sudah diformat rapi).
 
-## figures/
+3. Model & Metadata (models/)
+- vgg19_best_config.json: Konfigurasi parameter terbaik (jika ada).
+- densenet169_best_config.json: Konfigurasi parameter terbaik.
 
-| File | Isi |
-|---|---|
-| `fig_latency_p95.png` | Bar chart `http_req_duration` p95 per traffic_variant: none vs hybrid (mean±std, log scale) |
-| `fig_dperf.png` | Bar chart $D_{perf}$ (avg & p95) untuk 3 perbandingan traffic legitimate |
-| `fig_db_queries_reduction.png` | Bar chart total query Postgres per run: none vs hybrid (log scale) |
-| `fig_postgres_cpu.png` | Bar chart CPU% rata-rata container `gateway-postgres-1`: none vs hybrid |
-| `fig_resource_timeseries.png` | Time-series CPU% `gateway-postgres-1` selama `mixed-pool` rep1: none vs hybrid |
-
-## Acuan
-
-[../09-docs/tahap-4-analisis-data.md](../09-docs/tahap-4-analisis-data.md)
+4. Salinan Eksperimen (.ipynb)
+- klasifikasi_daun_padi_executed.ipynb: Notebook Jupyter yang berisi seluruh alur kerja penelitian—mulai dari loading data, analisis statistik deskriptif, visualisasi perbandingan, hingga pengujian signifikansi (T-Test) dengan keluaran (output) yang sudah tereksekusi.

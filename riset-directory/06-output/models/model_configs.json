@@ -1,0 +1,18 @@
+{
+    "VGG19": {
+        "input_shape": [
+            224,
+            224,
+            3
+        ],
+        "weights": "imagenet"
+    },
+    "DenseNet169": {
+        "input_shape": [
+            224,
+            224,
+            3
+        ],
+        "weights": "imagenet"
+    }
+}
