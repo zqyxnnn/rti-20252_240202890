@@ -12,21 +12,21 @@ Seiring perkembangan teknologi kecerdasan buatan, metode *Deep Learning* dengan 
 ## 2. Rumusan Masalah
 1. Apakah arsitektur DenseNet-169 menghasilkan akurasi dan nilai error (*Loss*) yang lebih baik dibandingkan VGG-19 saat menangani klasifikasi penyakit daun padi pada dataset terbatas?
 2. Bagaimana perbandingan performa metrik evaluasi (Akurasi, Presisi, *Recall*, dan *F1-Score*) kedua model setelah diterapkan teknik augmentasi data?
-3. Apakah perbedaan performa akurasi antara arsitektur VGG-19 dan DenseNet-169 signifikan secara statistik berdasarkan pengujian *t-Test* atau *Wilcoxon Signed-Rank Test*?
+3. Apakah perbedaan performa akurasi antara arsitektur VGG-19 dan DenseNet-169 signifikan secara statistik berdasarkan pengujian *t-Test*?
 
 ---
 
 ## 3. Hipotesis Penelitian [M1-07]
 Berdasarkan rumusan masalah yang diajukan, hipotesis yang akan diuji dalam penelitian ini adalah:
 * **$H_1$:** Penggunaan arsitektur DenseNet-169 secara signifikan menghasilkan akurasi klasifikasi yang lebih tinggi dan konvergensi *loss* yang lebih cepat dibandingkan arsitektur VGG-19 pada kondisi dataset daun padi yang terbatas.
-* **$H_2$:** Terdapat perbedaan performa metrik akurasi yang signifikan secara statistik (nilai $p < 0.05$) antara arsitektur VGG-19 dan DenseNet-169 berdasarkan pengujian *t-Test* (atau *Wilcoxon Signed-Rank Test*) di seluruh 10 *independent runs* terkontrol.
+* **$H_2$:** Terdapat perbedaan performa metrik akurasi yang signifikan secara statistik (nilai $p < 0.05$) antara arsitektur VGG-19 dan DenseNet-169 berdasarkan pengujian *t-Test* di seluruh 10 *independent runs* terkontrol.
 
 ---
 
 ## 4. Tujuan Penelitian
 1. Mengimplementasikan arsitektur VGG-19 dan DenseNet-169 sebagai *feature extractor* untuk klasifikasi penyakit daun padi.
 2. Mengevaluasi secara komparatif performa kedua model menggunakan metrik Akurasi, Presisi, *Recall*, dan *F1-Score* pada data *testing*.
-3. Menguji signifikansi perbedaan performa model secara statistik menggunakan pengujian statistik (*t-Test* / *Wilcoxon*) di seluruh 10 *runs* terkontrol untuk menjamin reliabilitas.
+3. Menguji signifikansi perbedaan performa model secara statistik menggunakan pengujian statistik (*t-Test*) di seluruh 10 *runs* terkontrol untuk menjamin reliabilitas.
 4. Menyediakan rekomendasi empiris mengenai pemilihan arsitektur CNN yang efisien untuk diimplementasikan pada perangkat dengan keterbatasan komputasi di sektor pertanian.
 
 ---
@@ -59,4 +59,4 @@ Penelitian terdahulu menunjukkan bahwa arsitektur VGG-19 sangat tangguh dalam me
 - **DenseNet-169:** Menggunakan arsitektur DenseNet-169 pra-latih (*pretrained* ImageNet) dengan modifikasi *top-layer* yang identik (Dense 256, Dropout 0.5, Softmax 4 kelas) demi perbandingan yang adil (*apple-to-apple*).
 
 ### 6.4 Evaluasi & Validasi
-Proses *training* dijalankan sebanyak 10 kali *independent runs* menggunakan *seed* acak yang berbeda untuk menguji konsistensi model. Metrik evaluasi yang dicatat meliputi matriks kebingungan (*Confusion Matrix*), Akurasi, Presisi, *Recall*, dan *F1-Score*. Terakhir, perbedaan rata-rata akurasi akhir diuji menggunakan **Wilcoxon Signed-Rank Test** atau **Paired t-Test** untuk membuktikan signifikansi secara statistik.
+Proses *training* dijalankan sebanyak 10 kali *independent runs* menggunakan *seed* acak yang berbeda untuk menguji konsistensi model. Metrik evaluasi yang dicatat meliputi matriks kebingungan (*Confusion Matrix*), Akurasi, Presisi, *Recall*, dan *F1-Score*. Terakhir, perbedaan rata-rata akurasi akhir diuji menggunakan **Paired t-Test** untuk membuktikan signifikansi secara statistik.

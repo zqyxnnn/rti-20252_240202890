@@ -13,13 +13,13 @@ Catatan kronologis pelaksanaan tiap tahap (sumber: riwayat commit git & dokumen 
 ## Status Ringkas
 
 - **WS-09 (Experiment Design)**: Selesai (Desain pipeline terkunci via commit `c161a2f`).
-- **WS-10 (Execution Data)**: Selesai (Dataset mentah 70 runs terisi lengkap dan jujur via commit `f38361f`).
+- **WS-10 (Execution Data)**: Selesai (Dataset mentah 35 runs terisi lengkap dan jujur via commit `f38361f`).
 - **WS-11 (Data Validation)**: Selesai (Kalkulasi IQR membuktikan data valid, homogen, dan siap uji statistik inferensial via commit `d6bcac8`).
 
 ## Item Tindak Lanjut (Checklist Sebelum UTS Selesai)
 
 - [x] Sinkronisasi nilai rata-rata akurasi VGG-19 (80.82%) dan DenseNet-169 (88.78%) di semua dokumen
-- [x] Pengisian tabel data mentah 70 baris secara utuh di WS-10
+- [x] Pengisian tabel data mentah 35 baris secara utuh di WS-10
 - [x] Perhitungan batas atas dan batas bawah IQR secara formal di WS-11
 - [x] Sinkronisasi referensi log administrasi dengan hash commit Git riil
 - [ ] Pastikan seluruh worksheet lolos verifikasi sinkronisasi Git tanpa ada file yang tertinggal
