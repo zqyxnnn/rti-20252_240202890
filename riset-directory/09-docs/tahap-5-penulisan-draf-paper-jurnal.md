@@ -13,7 +13,7 @@ Menyusun naskah ilmiah yang merefleksikan hasil eksperimen aktual: VGG-19 (Mean:
 
 | Bagian | File | Status |
 |---|---|---|
-| Naskah konsolidasi (template jurnal) | [../07-manuskrip/naskah-jurnal.md](../07-manuskrip/naskah-jurnal.md), [../07-manuskrip/naskah-jurnal.docx](../07-manuskrip/naskah-jurnal.docx) | Selesai — gabungan §1–§5 + Daftar Pustaka |
+| Naskah konsolidasi (template jurnal) | [../07-manuskrip/naskah-jurnal.md](../07-manuskrip/naskah-jurnal.md) | Selesai — gabungan §1–§5 + Daftar Pustaka |
 | Laporan Hasil & Latar Belakang | [../08-laporan/laporan-penelitian.md](../08-laporan/laporan-penelitian.md) | Selesai |
 
 ## Catatan
