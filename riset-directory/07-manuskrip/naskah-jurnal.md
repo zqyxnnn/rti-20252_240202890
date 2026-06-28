@@ -41,14 +41,14 @@ Padi merupakan komoditas pangan utama di Indonesia, namun produktivitasnya serin
 
 | Model | Rata-rata Akurasi (%) | Standar Deviasi |
 | :--- | :--- | :--- |
-| **VGG-19** | 85.06 | 4.67 |
-| **DenseNet-169** | 84.14 | 4.14 |
+| **VGG-19** | 84.90% | 4.54 |
+| **DenseNet-169** | 84.50% | 4.21 |
 
 ### Tabel 2. Hasil Wilcoxon Signed-Rank Test
 
 | Komparasi Model | Nilai Statistik | p-value | Kesimpulan |
 | :--- | :--- | :--- | :--- |
-| **VGG-19 vs DenseNet-169** | 288.0 | 0.6558 | Tidak Signifikan |
+| **VGG-19 vs DenseNet-169** | 0.3864| 0.7004 | Tidak Signifikan |
 
 Temuan utama dari penelitian ini adalah bahwa tidak terdapat perbedaan signifikan secara statistik (p > 0,05) antara performa VGG-19 dan DenseNet-169 dalam mengklasifikasikan citra penyakit daun padi pada resolusi 64x64.
 Beberapa poin diskusi yang relevan:Sensitivitas Random Seed: 
