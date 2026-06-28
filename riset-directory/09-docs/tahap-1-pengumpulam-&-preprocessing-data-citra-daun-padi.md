@@ -25,7 +25,9 @@
     - Validation Set (10%): Digunakan untuk memantau hyperparameter tuning selama training.Testing Set (10%): 
     - Digunakan untuk evaluasi final performa model.
 
-## 4. Hasil & Output yang Dihasilkan
+```
+
+## 3. Hasil & Output yang Dihasilkan
 
 1. Struktur Direktori Data: Dataset telah dipetakan ke dalam struktur train, val, dan test di dalam folder 04-data/.
 2. Data Metadata: Berkas dataset_summary.csv berisi rincian jumlah citra per kelas yang telah divalidasi.
