@@ -35,6 +35,8 @@ Analisis dilakukan melalui skrip run_analysis.py dengan langkah-langkah:
 2. Statistik Deskriptif: Menghitung Mean, Median, Standar Deviasi, Min, dan Max akurasi untuk masing-masing arsitektur. Hasil disimpan ke summary_statistics.csv.
 3. Visualisasi: Membuat boxplot perbandingan distribusi akurasi untuk melihat sebaran performa dan konsistensi dari 35 run tersebut. Hasil disimpan ke 06-output/figures/.
 
+```
+
 ## Hasil
 
 ### Tabel Perbandingan Performa
