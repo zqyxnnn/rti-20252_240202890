@@ -2,7 +2,7 @@
 
 **Status:** Selesai — matrix 35 run (per arsitektur) telah dijalankan, data tersimpan di ../06-output/ (arsip eksperimen awal 10-run telah dipindahkan ke ../06-output/_archive/).
 Bergantung pada: tahap-2-arsitektur-dan-training.md
-**Bergantung pada:** [tahap-2-implementasi-gateway.md](tahap-2-implementasi-gateway.md)
+**Bergantung pada:** [tahap-2-implementasi-arsitektur-VGG-19-&-densenet-169.md](tahap-2-implementasi-arsitektur-VGG-19-&-densenet-169.md)
 **Lokasi kode:** [../05-kode/analysis/](../05-kode/analysis/)
 
 ---
