@@ -39,6 +39,8 @@ Menjalankan otomasi eksperimen untuk membandingkan performa akurasi VGG-19 dan D
 5. Mengambil metrik akurasi validasi final dan menyimpannya ke ../06-output/tables/
 6. Menghapus bobot model sementara untuk menghemat ruang disk (kecuali best weights).
 
+```
+
 ## Hasil Eksperimen
 
 Matrix 35 run dijalankan per arsitektur (Total 70 run). Eksperimen dilakukan untuk membandingkan stabilitas model terhadap inisialisasi bobot awal yang berbeda.
