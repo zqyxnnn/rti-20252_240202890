@@ -161,9 +161,9 @@ Minta teman/kolega mengajukan 3 pertanyaan tentang riset Anda. Catat pertanyaan 
 
 | # | Pertanyaan | Jawaban Saya | Evaluasi |
 |---|-----------|-------------|---------|
-| 1 | Kenapa tidak pakai ViT? | Fokus pada perbandingan CNN klasik. | [ ] Direct [ ] Data-based [ ] Honest |
-| 2 | Bagaimana jika data ditambah? | DenseNet berpotensi lebih unggul. | [ ] Direct [ ] Data-based [ ] Honest |
-| 3 | Apakah hasil sudah divalidasi? | Penelitian fokus pada 2 arsitektur. | [ ] Direct [ ] Data-based [ ] Honest |
+| 1 | Kenapa tidak pakai ViT? | Fokus pada perbandingan CNN klasik. | [x] Direct [x] Data-based [x] Honest |
+| 2 | Bagaimana jika data ditambah? | DenseNet berpotensi lebih unggul. | [x] Direct [xgit add .] Data-based [x] Honest |
+| 3 | Apakah hasil sudah divalidasi? | Penelitian fokus pada 2 arsitektur. | [x] Direct [x] Data-based [x] Honest |
 
 **Pertanyaan yang paling sulit dijawab:**
 > "Apakah perbedaan performa ini sudah mencakup optimasi hyperparameter?"
