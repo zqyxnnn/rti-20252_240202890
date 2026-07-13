@@ -86,31 +86,37 @@ Prediksi pertanyaan berdasarkan kategori:
 DEFENSE PREPARATION
 
 Slide Deck Plan:
-  Total slides   : ____ (target: 10-12 konten + title/closing)
-  Time per slide : ~2 min
-  Total time     : ____ menit
+  Total slides   : 9 slide konten + 1 title + 1 closing = 11 slide
+  Time per slide : ~1.3 min
+  Total time     : 15 menit
 
 Slide Outline:
 | # | Pesan Utama | Visual | Waktu |
 |---|-------------|--------|-------|
-| 1 | Title       |        | 30s   |
-| 2 | Problem     |        | 2min  |
-| 3 | Gap + RQ    |        | 2min  |
-| ..|             |        |       |
+| 1 | Title       |    Judul & Foto daun padi    | 1min |
+| 2 | Problem     |    Infografis alur deteksi manual    | 2min  |
+| 3 | Gap + RQ    |    Gap matrix (VGG vs DenseNet)    | 1.5min  |
+| 4 | Method: Pipeline 35 runs & t-Test |    Diagram alir sistem    | 2min |
+| 5 | Key result: Tabel Akurasi | Tabel ringkasan akurasi | 2min |
+| 6 | Key result: Grafik Box Plot | Box plot distribusi performa | 2min |
+| 7 | Interpretation: Hasil setara secara statistik | Analisis saturation point | 2min |
+| 8 | Limitation: Resolusi & saran masa depan | Bullet points batasan riset | 1.5min |
+| 9 | Conclusion: Efisiensi > kompleksitas | Diagram alir sistem | 1min |
+
 
 Anticipatory Defense Matrix:
 | Kategori | Pertanyaan Potensial | Jawaban (CER) |
 |----------|---------------------|---------------|
-| Problem  |                     |               |
-| Gap      |                     |               |
-| Method   |                     |               |
-| Results  |                     |               |
-| Generalization |               |               |
+| Problem  | Mengapa masalah ini penting? | Padi adalah komoditas krusial; deteksi dini otomatis mengurangi gagal panen [C]. Data ekonomi menunjukkan ancaman penyakit blas/hawar daun [E]. Otomasi menurunkan subjektivitas pakar [R]. |
+| Gap      | Bagaimana dengan studi terdahulu? | Studi sebelumnya seringkali hanya single-run [C]. Hasil iterasi 35 kali menunjukkan standar deviasi > 4% [E]. Hal ini membuktikan bahwa single-run tidak cukup reliabel [R]. |
+| Method   | Mengapa 35 iterasi? | Untuk menjamin reliabilitas statistik [C]. Nilai SD > 4% pada kedua model [E]. Eksperimen berulang memitigasi bias inisialisasi bobot acak [R]. |
+| Results  | Mengapa performa setara? | Kedua model mencapai saturation point [C]. Wilcoxon p-value 0.7004 (> 0.05) [E]. Fitur daun padi tidak memerlukan arsitektur yang terlalu dalam untuk diklasifikasi [R]. |
+| Generalization | Bisakah diterapkan di domain lain? | Ya, dengan retraining [C]. Arsitektur CNN bersifat agnostik domain [E]. Transfer learning memungkinkan adaptasi ke kelas citra lain [R]. |
 
 Latihan:
-  Latihan 1: [tanggal] — [catatan timing & feedback]
-  Latihan 2: [tanggal] — [catatan timing & feedback]
-  Latihan 3: [tanggal] — [catatan timing & feedback]
+  Latihan 1: [tanggal] — 2026-07-13 — Draft slide deck siap.
+  Latihan 2: [tanggal] — 2026-07-13 — Simulasi tanya jawab mandiri.
+  Latihan 3: [tanggal] — 2026-07-13 — Uji coba presentasi di depan rekan.
 ```
 
 ---
@@ -120,18 +126,18 @@ Latihan:
 Rencanakan presentasi 15 menit untuk riset Anda.
 
 | # | Pesan Utama | Visual yang Digunakan | Waktu |
-|---|-------------|----------------------|-------|
-| 1 | *Contoh: Judul + konteks — rekomendasi vs kepuasan* | *Title slide, gambar sistem* | *1 min* |
-| 2 | *Contoh: Problem — RMSE tinggi tapi satisfaction rendah (45/100)* | *Bar chart: satisfaction vs RMSE per sistem* | *2 min* |
-| 3 | *Contoh: Gap + RQ — belum ada CF+context untuk satisfaction* | *Tabel gap literatur* | *1.5 min* |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
+|---|-------------|-----------------------|-------|
+| 1 | Judul + Konteks (Penyakit Padi) | Judul & Foto daun padi | 1 min |
+| 2 | Problem: Deteksi manual subjektif & lambat | Infografis alur deteksi manual | 2 min |
+| 3 | Gap + RQ: Konsensus arsitektur belum ada | Gap matrix (VGG vs DenseNet) | 1.5 min |
+| 4 | Method: Pipeline 35 runs & t-Test | Diagram alir sistem | 2 min |
+| 5 | Key result: Tabel Akurasi | Tabel ringkasan akurasi | 2 min |
+| 6 | Key result: Grafik Box Plot | Box plot distribusi performa | 2 min |
+| 7 | Interpretation: Hasil setara secara statistik | Analisis saturation point | 2 min |
+| 8 | Limitation: Resolusi & saran masa depan | Bullet points batasan riset | 1.5 min |
+| 9 | Conclusion: Efisiensi > kompleksitas | Highlight kontribusi utama | 1 min |
 
-**Total waktu estimasi:** ____ menit
+**Total waktu estimasi:** 15 menit
 
 ---
 
@@ -141,11 +147,11 @@ Prediksi 5 pertanyaan yang mungkin diajukan penguji, lalu siapkan jawaban CER.
 
 | # | Kategori | Pertanyaan | Claim | Evidence | Reasoning |
 |---|----------|-----------|-------|----------|-----------|
-| 1 | *Problem* | *Contoh: Mengapa fokus kepuasan, bukan akurasi?* | *Akurasi tinggi tidak menjamin kepuasan* | *Survey: 45/100 satisfaction meski RMSE 0.87* | *Gap antara metrik teknis dan pengalaman pengguna* |
-| 2 | *Method* | *Contoh: Mengapa hanya 3 dataset?* | *3 dataset mewakili variasi: small-clean, medium-clean, medium-noisy* | *Tabel karakteristik dataset di Bab Method* | *Generalisasi perlu validasi lanjut — tercatat sebagai limitasi* |
-| 3 | | | | | |
-| 4 | | | | | |
-| 5 | | | | | |
+| 1 | Problem | Mengapa masalah ini penting? | Padi krusial bagi ekonomi. | Data penurunan produktivitas. | Otomasi menurunkan subjektivitas. |
+| 2 | Gap | Bagaimana dengan studi terdahulu? | Studi terdahulu kurang reliabel. | SD > 4% pada hasil single-run. | Iterasi 35 kali menjamin stabilitas. |
+| 3 | Method | Mengapa 35 iterasi? | Memitigasi bias inisialisasi. | Standar deviasi > 4%. | Eksperimen berulang itu mutlak. |
+| 4 | Results | Mengapa performa setara? | Kedua model mencapai saturasi. | p-value 0.7004 (> 0.05). | Fitur cukup sederhana. |
+| 5 | Gen | Bisa diterapkan di domain lain? | Ya, dengan retraining. | Arsitektur bersifat agnostik. | Transfer learning memungkinkan. |
 
 ---
 
@@ -154,15 +160,16 @@ Prediksi 5 pertanyaan yang mungkin diajukan penguji, lalu siapkan jawaban CER.
 Minta teman/kolega mengajukan 3 pertanyaan tentang riset Anda. Catat pertanyaan dan evaluasi jawaban Anda.
 
 | # | Pertanyaan | Jawaban Saya | Evaluasi |
-|---|-----------|-------------|---------|| *1* | *Contoh: "Mengapa tidak membandingkan dengan metode Y?"* | *Contoh: "Karena Y memerlukan dataset labeled yang tidak tersedia. Disebutkan sebagai limitasi di halaman X."* | *[✓] Direct [✓] Data-based [✓] Honest* || 1 | | | [ ] Direct [ ] Data-based [ ] Honest |
-| 2 | | | [ ] Direct [ ] Data-based [ ] Honest |
-| 3 | | | [ ] Direct [ ] Data-based [ ] Honest |
+|---|-----------|-------------|---------|
+| 1 | Kenapa tidak pakai ViT? | Fokus pada perbandingan CNN klasik. | [ ] Direct [ ] Data-based [ ] Honest |
+| 2 | Bagaimana jika data ditambah? | DenseNet berpotensi lebih unggul. | [ ] Direct [ ] Data-based [ ] Honest |
+| 3 | Apakah hasil sudah divalidasi? | Penelitian fokus pada 2 arsitektur. | [ ] Direct [ ] Data-based [ ] Honest |
 
 **Pertanyaan yang paling sulit dijawab:**
-> ___________________________________________________
+> "Apakah perbedaan performa ini sudah mencakup optimasi hyperparameter?"
 
 **Apa yang perlu disiapkan lebih baik:**
-> ___________________________________________________
+> Menyiapkan data bahwa fine-tuning dilakukan konsisten di kedua arsitektur agar perbandingan apple-to-apple.
 
 ---
 
@@ -171,7 +178,7 @@ Minta teman/kolega mengajukan 3 pertanyaan tentang riset Anda. Catat pertanyaan 
 > Dari seluruh proses WS-01 sampai WS-16 — dari paradigma riset hingga presentasi — bagian mana yang paling mengubah cara Anda berpikir tentang riset? Apa satu hal yang akan selalu Anda terapkan di riset berikutnya?
 
 **Insight terbesar:**
-> ___________________________________________________
+> Bagian yang paling mengubah cara berpikir saya adalah Consistency Matrix (WS-15). Sebelumnya, saya hanya menulis bagian per bagian secara terpisah. Ternyata, riset yang kuat adalah riset yang "benang merahnya" (RQ, Method, Result) terikat kencang sejak awal, sehingga defense di akhir menjadi jauh lebih mudah karena datanya sudah konsisten.
 
 **Yang akan selalu diterapkan:**
-> ___________________________________________________
+> Saya akan selalu menerapkan pendekatan CER (Claim-Evidence-Reasoning) dalam setiap komunikasi ilmiah maupun profesional. Menjawab dengan data dan logika jauh lebih efektif daripada sekadar berargumen subjektif.

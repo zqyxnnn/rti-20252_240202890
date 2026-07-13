@@ -102,8 +102,6 @@ Verifikasi apakah semua data yang direncanakan sudah terkumpul.
 |----------|-----------------|-------------|---------|--------|
 | Skenario A: Baseline VGG-19 | 35 | 35 | 0 | Eksekusi otomatis via for-loop sukses |
 | Skenario B: Intervensi DenseNet-169 | 35 | 35 | 0 | Eksekusi otomatis via for-loop sukses |
-| | | | | |
-| | | | | |
 
 **Total expected:** 70 | **Total actual:** 70 | **Missing:** 0
 

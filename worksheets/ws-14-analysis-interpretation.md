@@ -80,32 +80,35 @@ ANALYSIS & INTERPRETATION
 1. Statistik Deskriptif:
    | Skenario | Mean | Std | Median | Min | Max | n |
    |----------|------|-----|--------|-----|-----|---|
-   |          |      |     |        |     |     |   |
+   | VGG-19 | 84.91 | 4.54 | 83.61 | 78.70 | 91.35 | 35 |
+   | DenseNet-169 | 84.50 | 4.22 | 85.03 | 78.16 | 91.35 | 35 |
 
 2. Uji Hipotesis:
-   Uji yang digunakan  : ____________________
-   Justifikasi          : ____________________
-   Hasil: p = ____, effect size (d/r/η²) = ____
-   CI 95%               : [____, ____]
+   Uji yang digunakan  : Independent T-Test
+   Justifikasi          : Eksperimen membandingkan rata-rata performa dari dua model (VGG-19 dan DenseNet-169) yang dijalankan pada kondisi yang setara. Uji ini dipilih untuk menentukan apakah perbedaan rata-rata akurasi antara kedua model tersebut signifikan secara statistik atau hanya karena variasi acak.
+   Hasil: p = 0.7004, effect size (d/r/η²) = 0.3864
+   CI 95%               : [-2.23, 3.05]
 
 3. Keputusan:
    [ ] H₀ ditolak → H₁ diterima
-   [ ] H₀ tidak ditolak
+   [x] H₀ tidak ditolak
 
 4. Interpretasi:
-   Hubungan ke RQ       : ____________________
-   Practical significance: ____________________
-   Perbandingan literatur: ____________________
+   Hubungan ke RQ       : Hipotesis bahwa DenseNet-169 secara otomatis lebih unggul dari VGG-19 tidak terbukti pada dataset ini. Keduanya menunjukkan performa yang sangat kompetitif.
+   Practical significance: Perbedaan rata-rata hanya ~0.4%. Secara praktis, pemilihan model mungkin lebih bergantung pada efisiensi training atau inference speed daripada akurasi.
+   Perbandingan literatur: Hasil ini menarik karena DenseNet biasanya dianggap lebih superior, namun pada dataset ini performanya setara, menunjukkan bahwa untuk tugas klasifikasi daun padi ini, kompleksitas model mungkin sudah mencapai titik jenuh (saturation point).
 
 5. Limitation:
    | Jenis | Ancaman | Dampak | Mitigasi |
-   |-------|---------|--------|----------|
-   |       |         |        |          |
+   | :--- | :--- | :--- | :--- |
+   | **Statistical** | *Sample size* terbatas (n=35) | *Power* uji statistik rendah | *Multiple runs* dengan *fixed seed* |
+   | **Construct** | Metrik akurasi tunggal | Kurang detail per kelas | Analisis *F1-score* atau *Confusion Matrix* |
+   | **Internal** | Variabilitas komputasi | *Noise* pada hasil *training* | Lingkungan eksekusi terkontrol |
 
 6. Failure Analysis (jika H₀ tidak ditolak):
-   Penyebab potensial  : ____________________
-   Boundary condition   : ____________________
-   Insight              : ____________________
+   Penyebab potensial  : Overfitting atau noise pada dataset citra yang membuat keunggulan arsitektur dense connection tidak tereksploitasi maksimal.
+   Boundary condition   : Kemungkinan kedua arsitektur mencapai batas kemampuan fitur yang bisa diekstraksi dari resolusi citra yang digunakan.
+   Insight              : Tidak ada pemenang tunggal. Rekomendasi riset selanjutnya bisa difokuskan pada hybrid model atau optimasi hyperparameter khusus untuk DenseNet agar bisa melampaui VGG.
 ```
 
 ---
@@ -116,13 +119,13 @@ Tentukan uji statistik yang tepat untuk eksperimen Anda.
 
 | Pertanyaan | Jawaban |
 |-----------|---------|
-| Berapa grup yang dibandingkan? | *Contoh: 3 (BERT, LSTM, SVM)* |
-| Apakah data berpasangan (paired)? | |
-| Apakah distribusi normal? (uji normalitas) | |
-| **Uji yang dipilih:** | |
-| **Justifikasi:** | |
+| Berapa grup yang dibandingkan? | 2 (VGG-19 dan DenseNet-169) |
+| Apakah data berpasangan (paired)? | Ya, diuji pada iterasi data yang sama |
+| Apakah distribusi normal? (uji normalitas) | Ya, asumsi terpenuhi pada n=35 |
+| **Uji yang dipilih:** | Paired t-test |
+| **Justifikasi:** | MData bersifat kontinu, berpasangan, dan memenuhi asumsi normalitas untuk membandingkan rata-rata dua kelompok |
 
-**Effect size yang akan dilaporkan:** [ ] Cohen's d / [ ] Eta-squared / [ ] Lainnya: ____
+**Effect size yang akan dilaporkan:** [x] Cohen's d / [ ] Eta-squared / [ ] Lainnya: ____
 
 ---
 
@@ -133,18 +136,18 @@ Gunakan data berikut (atau data riil Anda) untuk berlatih interpretasi.
 **Data:**
 | Model | Accuracy (mean ± std) | n |
 |-------|----------------------|---|
-| A | 89.2 ± 1.5 | 10 |
-| B | 87.8 ± 2.1 | 10 |
+| A | 84.91 ± 4.54 | 35 |
+| B | 84.50 ± 4.22 | 35 |
 
-p = 0.045, Cohen's d = 0.74, CI 95% = [0.03, 2.77]
+p = 0.7004, Cohen's d = 0.09, CI 95% = [-2.23, 3.05]
 
 | Aspek | Interpretasi |
 |-------|-------------|
-| Signifikansi statistik | *Contoh: p < 0.05 → signifikan pada α=0.05* |
-| Effect size | *Contoh: d=0.74 → medium-to-large effect* |
-| Practical significance | |
-| Hubungan ke RQ | |
-| Perbandingan literatur | |
+| Signifikansi statistik | p = 0.7004 > 0.05 → Tidak ditemukan perbedaan signifikan secara statistik pada α = 0.05. |
+| Effect size | d = 0.09 (Cohen's d) → Efek sangat kecil (negligible), selisih performa antar-model tidak berarti secara statistik. |
+| Practical significance | Perbedaan rata-rata hanya 0.41%. Secara praktis, kedua model memberikan hasil yang setara untuk dataset ini. |
+| Hubungan ke RQ | Hipotesis bahwa DenseNet-169 lebih unggul tidak terbukti; arsitektur yang lebih kompleks tidak memberikan nilai tambah di sini. |
+| Perbandingan literatur | Hasil ini sejalan dengan studi saturation point, di mana pada dataset spesifik, arsitektur sederhana (VGG) bisa menandingi arsitektur kompleks (DenseNet). |
 
 ---
 
@@ -156,18 +159,17 @@ Latih kemampuan failure analysis: hipotesis TIDAK didukung. Apa yang bisa dipela
 
 | Pertanyaan | Jawaban |
 |-----------|---------|
-| Apakah ini "gagal"? | *Contoh: Bukan gagal total — hipotesis tidak terdukung adalah temuan yang valid dan bisa menjadi kontribusi.* |
-| Kemungkinan penyebab? | *Contoh: Metode baru menambah kompleksitas komputasi (+40% waktu) tanpa peningkatan F1 yang cukup — overhead tidak sebanding.* |
-| Boundary condition? | *Contoh: Metode ini hanya efektif ketika data ≥ 10.000 record; di dataset kecil (<1.000), baseline lebih stabil.* |
-| Insight yang bisa diambil? | *Contoh: Ada trade-off ukuran data vs kompleksitas — rekomendasikan hybrid approach yang adaptif berdasarkan ukuran dataset.* |
-| Apakah layak dilaporkan? Mengapa? | *Contoh: Ya — negative result + boundary condition analysis adalah kontribusi riset yang diakui komunitas (ex: ACL, SIGIR). Mencegah riset duplikasi yang berulang.* |
+| Apakah ini "gagal"? | Bukan kegagalan, melainkan negative result yang menjadi kontribusi empiris untuk memetakan batas efektivitas metode baru. |
+| Kemungkinan penyebab? | Penambahan kompleksitas pada metode baru memberikan overhead komputasi tanpa adanya peningkatan ekstraksi fitur yang berarti pada dataset saat ini. |
+| Boundary condition? | Metode baru tampaknya hanya menunjukkan keunggulan pada dataset skala besar (n > 10.000), sementara pada skala saat ini, baseline lebih efisien. |
+| Insight yang bisa diambil? | Adanya trade-off antara kompleksitas arsitektur dan efisiensi; untuk dataset menengah, pendekatan yang lebih ringan lebih direkomendasikan. |
+| Apakah layak dilaporkan? Mengapa? | Ya, pelaporan negative result dan boundary condition mencegah redundansi riset di masa depan dan memperkaya literatur domain. |
 
 **Limitation terkait:**
 | Jenis | Ancaman | Dampak |
 |-------|---------|--------|
-| *Contoh: Statistical* | *Contoh: Hanya 5 run per skenario* | *Power test rendah* |
-| | | |
-| | | |
+| Statistical | Sample size terbatas (hanya 10 runs) | Statistical power yang rendah untuk menangkap perbedaan kecil |
+| Internal | Variabilitas pada initialization | Ketidakpastian dalam replikasi hasil pada seed yang berbeda |
 
 ---
 
@@ -175,5 +177,4 @@ Latih kemampuan failure analysis: hipotesis TIDAK didukung. Apa yang bisa dipela
 
 > Apakah "failure" dalam riset benar-benar gagal, atau justru kontribusi? Bagaimana failure analysis mengubah cara Anda melihat hasil negatif?
 
-> ___________________________________________________
-> ___________________________________________________
+> Kegagalan dalam riset adalah bagian integral dari proses penemuan; hasil negatif yang dianalisis dengan failure analysis justru merupakan kontribusi yang jujur karena memberikan batasan yang jelas bagi komunitas riset. Kegagalan ini mengubah cara pandang saya dari "mencari hasil sukses" menjadi "mencari kebenaran objektif", di mana mengetahui mengapa sebuah metode tidak bekerja sama pentingnya dengan mengetahui kapan ia bekerja. Dengan melakukan analisis ini, saya dapat menghindari jebakan p-hacking dan lebih fokus pada pemahaman mendalam mengenai perilaku model dalam berbagai kondisi boundary.

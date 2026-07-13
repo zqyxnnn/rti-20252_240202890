@@ -65,25 +65,27 @@ Keduanya **saling melengkapi**:
 ```
 RESULT PRESENTATION PLAN
 
-Research Question : ____________________
-Metrik Utama      : ____________________
+Research Question : pakah DenseNet-169 memberikan performa klasifikasi penyakit daun padi yang lebih stabil dan akurat dibandingkan VGG-19 pada dataset terbatas?
+Metrik Utama      : Akurasi (%) dan F1-Score (%)
 
 Tabel Hasil:
 | Skenario | Metrik 1 (mean ± std) | Metrik 2 (mean ± std) | n |
 |----------|----------------------|----------------------|---|
-|          |                      |                      |   |
+| DenseNet-169 | 88.78 ± 1.60 | 88.15 ± 1.75 | 35 |
+| VGG-19 | 80.82 ± 1.79 | 79.92 ± 1.85 | 35 |
 
 Visualisasi yang Direncanakan:
 | # | Jenis Grafik | Pesan Utama | Metrik |
 |---|-------------|-------------|--------|
-| 1 |             |             |        |
-| 2 |             |             |        |
+| 1 | Bar Chart + Error Bar | Menunjukkan keunggulan performa DenseNet-169 yang signifikan dibanding VGG-19. | Mean Akurasi ± SD |
+| 2 | Box Plot | Membandingkan distribusi dan konsistensi (rentang nilai) antar model. | Akurasi (semua run) |
+| 3 | Scatter Plot | Memetakan stabilitas performa (stdev) terhadap rata-rata. | Akurasi vs Stdev |
 
 Bias Check:
-  [ ] Y-axis mulai dari 0 (atau dijustifikasi)
-  [ ] Error bar/CI ditampilkan
-  [ ] Semua data disertakan (tidak cherry-picked)
-  [ ] Tidak menggunakan 3D tanpa alasan
+  [x] Y-axis mulai dari 0 (atau dijustifikasi)
+  [x] Error bar/CI ditampilkan
+  [x] Semua data disertakan (tidak cherry-picked)
+  [x] Tidak menggunakan 3D tanpa alasan
 ```
 
 ---
@@ -94,15 +96,14 @@ Buat tabel hasil eksperimen Anda (boleh dengan data simulasi jika belum punya da
 
 | Skenario | Metrik 1 (mean ± std) | Metrik 2 (mean ± std) | n |
 |----------|----------------------|----------------------|---|
-| *Contoh: BERT-base* | *88.4 ± 1.2%* | *45.2 ± 3.1 min* | *10* |
-| | | | |
-| | | | |
+| DenseNet-169 | 88.78 ± 1.60 | 88.15 ± 1.75 | 35 |
+| VGG-19 | 80.82 ± 1.79 | 79.92 ± 1.85 | 35 |
 
 **Checklist tabel:**
-- [ ] Self-contained (judul jelas, satuan ada, N tercantum)
-- [ ] Mean ± std (bukan single number)
-- [ ] Diurutkan berdasarkan metrik utama
-- [ ] Format konsisten di semua baris
+- [x] Self-contained (judul jelas, satuan ada, N tercantum)
+- [x] Mean ± std (bukan single number)
+- [x] Diurutkan berdasarkan metrik utama
+- [x] Format konsisten di semua baris
 
 ---
 
@@ -112,9 +113,9 @@ Rencanakan 2-3 grafik untuk menyajikan data dari Latihan 1. Setiap grafik = satu
 
 | # | Jenis Grafik | Pesan | Data yang Digunakan |
 |---|-------------|-------|---------------------|
-| 1 | *Contoh: Bar chart + error bar* | *Perbandingan accuracy antar 3 model* | *Mean accuracy ± std* |
-| 2 | *Box plot* | *Distribusi F1 per model* | *Semua run F1* |
-| 3 | *Scatter plot* | *Trade-off accuracy vs training time* | *Mean accuracy vs mean time* |
+| 1 | Bar chart + error bar | Menunjukkan keunggulan performa DenseNet-169 secara signifikan dibandingkan VGG-19. | Mean accuracy ± SD |
+| 2 | Box plot | Memvisualisasikan konsistensi dan sebaran data (stabilitas) model di antara 35 kali pengulangan. | Seluruh data Akurasi 35 run |
+| 3 | Scatter plot | Memetakan hubungan antara rata-rata akurasi dengan variabilitas (stdev) untuk mengukur kestabilan model. | Mean Akurasi vs Stdev Akurasi |
 
 ---
 
@@ -126,13 +127,13 @@ Evaluasi visualisasi berikut untuk bias (skenario dari contoh):
 
 | Pertanyaan | Jawaban |
 |-----------|---------|
-| Apakah Y-axis menyesatkan? | *Contoh: Ya — A terlihat 2× B padahal beda 0.4%* |
-| Apakah error bar ditampilkan? | |
-| Apakah semua kondisi ditampilkan? | |
-| Apa solusinya? | |
+| Apakah Y-axis menyesatkan? | Tidak. Sumbu Y pada Bar Chart akan dimulai dari 0 agar perbedaan 8% (80.82% ke 88.78%) terlihat proporsional dan tidak berlebihan. |
+| Apakah error bar ditampilkan? | Ya. Error bar akan disertakan pada Bar Chart untuk menunjukkan standar deviasi (± 1.60 dan ± 1.79), memberikan konteks ketidakpastian. |
+| Apakah semua kondisi ditampilkan? | Ya. Seluruh 35 run untuk kedua skenario disertakan dalam Box Plot tanpa ada data yang disembunyikan (no cherry-picking). |
+| Apa solusinya? | Tidak ada tindakan perbaikan. Desain rencana visualisasi sudah memenuhi kaidah integritas ilmiah. |
 
 **Evaluasi grafik Anda sendiri dari Latihan 2:**
-- [ ] Semua bias check lulus
+- [x] Semua bias check lulus
 - [ ] Ada yang perlu diperbaiki: ____
 
 ---
@@ -141,5 +142,5 @@ Evaluasi visualisasi berikut untuk bias (skenario dari contoh):
 
 > Mengapa tabel dan grafik keduanya diperlukan — tidak cukup salah satu saja? Pernahkah Anda membuat grafik yang (tanpa sengaja) menyesatkan?
 
-> ___________________________________________________
-> ___________________________________________________
+> Tabel dan grafik memiliki fungsi kognitif yang berbeda namun saling melengkapi dalam riset. Tabel diperlukan untuk menyajikan presisi angka yang akurat, sehingga pembaca dapat melihat nilai eksak dari performa model tanpa ambiguitas. Di sisi lain, grafik diperlukan untuk memberikan pengenalan pola (pattern recognition) secara instan; grafik memudahkan peneliti dan audiens untuk melihat tren, fluktuasi, atau perbandingan antar-model yang mungkin sulit terdeteksi hanya dengan melihat deretan angka pada tabel. Dalam riset ilmiah, keduanya harus digunakan bersamaan agar argumen yang dibangun memiliki bukti yang transparan (tabel) sekaligus mudah dipahami secara visual (grafik).
+> Ya, sebelumnya saya pernah membuat grafik yang tidak menyertakan error bar atau menggunakan skala sumbu Y yang terpotong untuk menonjolkan perbedaan performa yang sebenarnya kecil. Tanpa disadari, tindakan tersebut membuat perbedaan yang tidak signifikan secara statistik tampak terlihat sangat dramatis, yang secara etika riset dapat menyesatkan pembaca. Pengalaman ini menjadi pengingat bagi saya bahwa dalam riset, objektivitas visual harus diutamakan di atas estetika, dan setiap visualisasi harus disertai dengan standar deviasi atau interval kepercayaan untuk menunjukkan ketidakpastian data.
