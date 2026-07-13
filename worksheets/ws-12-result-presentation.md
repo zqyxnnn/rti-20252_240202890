@@ -62,7 +62,6 @@ Keduanya **saling melengkapi**:
 
 ## Template A.12 — Result Presentation Plan
 
-```
 RESULT PRESENTATION PLAN
 
 Research Question : pakah DenseNet-169 memberikan performa klasifikasi penyakit daun padi yang lebih stabil dan akurat dibandingkan VGG-19 pada dataset terbatas?
@@ -86,7 +85,6 @@ Bias Check:
   [x] Error bar/CI ditampilkan
   [x] Semua data disertakan (tidak cherry-picked)
   [x] Tidak menggunakan 3D tanpa alasan
-```
 
 ---
 
