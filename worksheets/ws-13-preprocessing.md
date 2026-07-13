@@ -63,7 +63,7 @@ Data leakage terjadi ketika informasi dari test set "bocor" ke preprocessing:
 
 ## Template A.13 — Preprocessing Documentation Log
 
-```
+
 PREPROCESSING LOG
 
 Dataset           : Citra Penyakit Daun Padi (710 gambar)
@@ -94,7 +94,7 @@ Leakage Check:
 
 Jumlah data akhir : 710 images
 Script tersedia   : [x] Ya → path: ____ | [ ] Belum
-```
+
 
 ---
 
