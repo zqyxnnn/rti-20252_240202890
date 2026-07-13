@@ -74,7 +74,7 @@ Hipotesis yang ditolak adalah **temuan yang berharga**:
 
 ## Template A.14 — Analysis & Interpretation Report
 
-```
+
 ANALYSIS & INTERPRETATION
 
 1. Statistik Deskriptif:
@@ -109,7 +109,6 @@ ANALYSIS & INTERPRETATION
    Penyebab potensial  : Overfitting atau noise pada dataset citra yang membuat keunggulan arsitektur dense connection tidak tereksploitasi maksimal.
    Boundary condition   : Kemungkinan kedua arsitektur mencapai batas kemampuan fitur yang bisa diekstraksi dari resolusi citra yang digunakan.
    Insight              : Tidak ada pemenang tunggal. Rekomendasi riset selanjutnya bisa difokuskan pada hybrid model atau optimasi hyperparameter khusus untuk DenseNet agar bisa melampaui VGG.
-```
 
 ---
 
