@@ -91,6 +91,7 @@ Slide Deck Plan:
   Total time     : 15 menit
 
 Slide Outline:
+
 | # | Pesan Utama | Visual | Waktu |
 |---|-------------|--------|-------|
 | 1 | Title       |    Judul & Foto daun padi    | 1min |
