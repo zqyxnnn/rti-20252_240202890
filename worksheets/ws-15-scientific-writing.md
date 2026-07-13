@@ -81,7 +81,6 @@ Metrik-X     ✗      ✗       ✓ ←     ✗        ✗
 
 ## Template A.15 — Paper Structure Checklist
 
-```
 PAPER STRUCTURE CHECKLIST
 
 Title   : Komparasi Kinerja Arsitektur VGG-19 dan DenseNet-169 pada Klasifikasi Citra Penyakit Daun Padi
@@ -106,9 +105,6 @@ Writing Quality:
   [x] Clarity — mudah dipahami tanpa re-read
   [x] Precision — tidak ada istilah ambigu
   [x] Conciseness — tidak ada kalimat redundan
-```
-
----
 
 ## Latihan 1 — Paper Outline
 
