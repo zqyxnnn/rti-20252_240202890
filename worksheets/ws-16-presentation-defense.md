@@ -82,7 +82,7 @@ Prediksi pertanyaan berdasarkan kategori:
 
 ## Template A.16 — Defense Preparation Sheet
 
-```
+
 DEFENSE PREPARATION
 
 Slide Deck Plan:
@@ -118,7 +118,6 @@ Latihan:
   Latihan 1: [tanggal] — 2026-07-13 — Draft slide deck siap.
   Latihan 2: [tanggal] — 2026-07-13 — Simulasi tanya jawab mandiri.
   Latihan 3: [tanggal] — 2026-07-13 — Uji coba presentasi di depan rekan.
-```
 
 ---
 
